@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RPiTC</class>
+ <widget class="QMainWindow" name="RPiTC">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>660</width>
+    <height>330</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RPiTC beta!</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="rpitc_tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>651</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="maintcpkgs_tab">
+     <attribute name="title">
+      <string>Main TC Packages</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>301</width>
+        <height>224</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="mainpkgs_verticalLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="ica_checkBox">
+         <property name="text">
+          <string>Citrix Receiver 13.2.1</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/ica_icon.png</normaloff>:/icons/ica_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="vmware_checkBox">
+         <property name="text">
+          <string>VMWare Horizon 3.5.0</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/vmware_icon.png</normaloff>:/icons/vmware_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="nomachine_checkBox">
+         <property name="text">
+          <string>NoMachine NX 5.0.47</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/nx_icon.png</normaloff>:/icons/nx_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="thinlinc_checkBox">
+         <property name="text">
+          <string>Thinlinc Client 4.5.0</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/thinlinc_icon.png</normaloff>:/icons/thinlinc_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="twox_checkBox">
+         <property name="text">
+          <string>Parallels 2X 12.1</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/twox_icon.png</normaloff>:/icons/twox_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="browser_checkBox">
+         <property name="text">
+          <string>Iceweasel browser (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/iceweasel_icon.png</normaloff>:/icons/iceweasel_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="rdppkgs_tab">
+     <attribute name="title">
+      <string>RPD Packages</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>246</width>
+        <height>154</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="rdp_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="rdesktop_checkBox">
+         <property name="text">
+          <string>RDesktop (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/rdp_icon.png</normaloff>:/icons/rdp_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="xfreerdp_checkBox">
+         <property name="text">
+          <string>xFreeRDP (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/xfreerdp_icon.png</normaloff>:/icons/xfreerdp_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="xfreerdpgit_checkBox">
+         <property name="text">
+          <string>xFreeRDP (GIT rebuilded)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/xfreerdp_icon.png</normaloff>:/icons/xfreerdp_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="dfreerdp_checkBox">
+         <property name="text">
+          <string>dFreeRDP (RPi-TC build)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/xfreerdp_icon.png</normaloff>:/icons/xfreerdp_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="othertcpkgs_tab">
+     <attribute name="title">
+      <string>Other TC Packages</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>304</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="otherpkgs_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="x2go_checkBox">
+         <property name="text">
+          <string>X2Go Client (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/x2go_icon.png</normaloff>:/icons/x2go_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="spice_checkBox">
+         <property name="text">
+          <string>SPICE Client (RPi-TC/Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/spice_icon.png</normaloff>:/icons/spice_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="x3270_checkBox">
+         <property name="text">
+          <string>x3270 (RPi-TC repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/x3270_icon.png</normaloff>:/icons/x3270_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="tn5250_checkBox">
+         <property name="text">
+          <string>TN5250 (RPi-TC repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/tn5250_icon.png</normaloff>:/icons/tn5250_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="xephyr_checkBox">
+         <property name="text">
+          <string>Xephyr (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/xephyr_icon.png</normaloff>:/icons/xephyr_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="ospkgs_tab">
+     <attribute name="title">
+      <string>OS Services</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>336</width>
+        <height>189</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="os1_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="cups_checkBox">
+         <property name="text">
+          <string>CUPS Printing service (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/cups_icon.png</normaloff>:/icons/cups_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="vnc_checkBox">
+         <property name="text">
+          <string>VNC Server (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/vnc_icon.png</normaloff>:/icons/vnc_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="ssh_checkBox">
+         <property name="text">
+          <string>SSH Server (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/ssh_icon.png</normaloff>:/icons/ssh_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="conky_checkBox">
+         <property name="text">
+          <string>Conky system monitor (RPi-TC repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/conky_icon.png</normaloff>:/icons/conky_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="docky_checkBox">
+         <property name="text">
+          <string>Docky menu bars (RPi-TC/Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/docky_icon.png</normaloff>:/icons/docky_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>320</width>
+        <height>154</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="os2_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="virtualhere_checkBox">
+         <property name="text">
+          <string>VirtualHere USB Server (third party)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/virtualhere_icon.png</normaloff>:/icons/virtualhere_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="vpnc_checkBox">
+         <property name="text">
+          <string>VPNc support (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/vpnc_icon.png</normaloff>:/icons/vpnc_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="openvpn_checkBox">
+         <property name="text">
+          <string>OpenVPN support (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/openvpn_icon.png</normaloff>:/icons/openvpn_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="openconnect_checkBox">
+         <property name="text">
+          <string>Openconnect support (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/openconnect_icon.png</normaloff>:/icons/openconnect_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="custom_tab">
+     <attribute name="title">
+      <string>Other/Custom</string>
+     </attribute>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>551</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Here you can add your custom Packages/Services. Just edit the source code :)</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="custom1_checkBox">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>My Super Service!</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>290</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bash Me!</string>
+    </property>
+    <property name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/icons/bashme_icon.png</normaloff>:/icons/bashme_icon.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rescan_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>290</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rescan</string>
+    </property>
+    <property name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/icons/rescan_icon.png</normaloff>:/icons/rescan_icon.png</iconset>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

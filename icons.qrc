@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/ica_icon.png</file>
+        <file>icons/nx_icon.png</file>
+        <file>icons/rdp_icon.png</file>
+        <file>icons/twox_icon.png</file>
+        <file>icons/cups_icon.png</file>
+        <file>icons/iceweasel_icon.png</file>
+        <file>icons/openvpn_icon.png</file>
+        <file>icons/spice_icon.png</file>
+        <file>icons/ssh_icon.png</file>
+        <file>icons/tn5250_icon.png</file>
+        <file>icons/vnc_icon.png</file>
+        <file>icons/vpnc_icon.png</file>
+        <file>icons/x2go_icon.png</file>
+        <file>icons/x3270_icon.png</file>
+        <file>icons/xephyr_icon.png</file>
+        <file>icons/openconnect_icon.png</file>
+        <file>icons/thinlinc_icon.png</file>
+        <file>icons/vmware_icon.png</file>
+        <file>icons/xfreerdp_icon.png</file>
+        <file>icons/docky_icon.png</file>
+        <file>icons/conky_icon.png</file>
+        <file>icons/virtualhere_icon.png</file>
+        <file>icons/xterm_icon.png</file>
+        <file>icons/save_icon.png</file>
+        <file>icons/back_icon.png</file>
+        <file>icons/bashme_icon.png</file>
+        <file>icons/rescan_icon.png</file>
+    </qresource>
+</RCC>
