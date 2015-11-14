@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <QFileDialog>
 
 QString ica_pkgs = "not_present";
 QString vmware_pkgs = "not_present";
@@ -49,7 +50,11 @@ RPiTC::~RPiTC()
 
 void RPiTC::on_pushButton_clicked()
 {
-    QString bash_me = "#!/bin/bash\n\n####### RPi-TC Builder #######\n# Pre-install/remove commands:\napt-get update\n\n";
+    QString bash_me = "#!/bin/bash\n####### RPi-TC Builder #######\n\n";
+    if (ui->aptcache_checkBox->isChecked()) {
+        bash_me = bash_me + "####### Update apt cache:\n"
+                            "apt-get update\n";
+    }
     QString bash_me_filename = "/opt/bashme.sh";
 
     //######################START MAIN CLIENTS INSTALL/REMOVE ROUTINES######################ßß
@@ -303,20 +308,22 @@ void RPiTC::on_pushButton_clicked()
     }
     //######################START CUSTOM SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
     if (true) {
-        // VPNC
-        if (ui->custom1_checkBox->isChecked() && custom1_pkgs == "not_present") { qDebug() << "I have to install CUSTOM1!";
-        bash_me = bash_me + "\n####### CUSTOM1 Install cmds:\n"
-                            "# lot of bash cmd here :)\n";
+        // CUSTOM
+        if (ui->custom_checkBox->isChecked() && custom1_pkgs == "not_present") { qDebug() << "I have to install CUSTOM1!";
+        bash_me = bash_me + "\n\n####### Customscript: \n" + ui->custom_textEdit->toPlainText();
         }
-        if (!ui->custom1_checkBox->isChecked() && custom1_pkgs == "installed") { qDebug() << "I have to remove CUSTOM1!";
-        bash_me = bash_me + "\n####### CUSTOM1 Remove cmds:\n"
-                            "# lot of bash cmd here :)\n";
+        if (!ui->custom_checkBox->isChecked() && custom1_pkgs == "installed") { qDebug() << "I have to remove CUSTOM1!";
+        bash_me = bash_me + "\n\n####### Customscript: \n" + ui->custom_textEdit->toPlainText();
         }
     }
 
     //#### default commands to execute at the end:
-    bash_me = bash_me + "\n\n####### clean up all the unecessary package and the apt-get cache:\n"
-                        "apt-get autoremove --purge -y\napt-get clean\nsync";
+    if (ui->aptcache_checkBox->isChecked()) {
+        bash_me = bash_me + "\n\n####### clean up all the unecessary package and the apt-get cache:\n"
+                            "apt-get autoremove --purge -y\napt-get clean\n";
+    }
+    bash_me = bash_me + "\n# send sync flush file system buffers\n"
+                        "sync";
 
     //finalizing bash me and putting it to file:
     QFile file(bash_me_filename);
@@ -491,10 +498,18 @@ void RPiTC::on_rescan_pushButton_clicked()
     //######################START CUSTOM SERVICES CHECK######################ßß
     if (true) {
         // CUSTOM1
-        if (QFile("/usr/bin/lalalalalala").exists()) {
-            qDebug() << "CUSTOM1 is installed"; ui->custom1_checkBox->setChecked(true); custom1_pkgs = "installed";
+        if (QFile(ui->customfile_lineEdit->text()).exists()) {
+            qDebug() << "CUSTOM is installed"; ui->custom_checkBox->setChecked(true); custom1_pkgs = "installed";
         } else {
-            qDebug() << "CUSTOM1 missing"; ui->custom1_checkBox->setChecked(false); custom1_pkgs = "not_present";
+            qDebug() << "CUSTOM missing"; ui->custom_checkBox->setChecked(false); custom1_pkgs = "not_present";
         }
     }
+}
+
+void RPiTC::on_searchfile_pushButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+    "",
+    tr("File to check (*.*)"));
+    ui->customfile_lineEdit->setText(fileName);
 }

@@ -21,6 +21,8 @@ private slots:
 
     void on_rescan_pushButton_clicked();
 
+    void on_searchfile_pushButton_clicked();
+
 public:
     Ui::RPiTC *ui;
 };

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="maintcpkgs_tab">
      <attribute name="title">
@@ -440,30 +440,125 @@
      <attribute name="title">
       <string>Other/Custom</string>
      </attribute>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="custom_label">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>20</y>
+        <x>10</x>
+        <y>70</y>
         <width>551</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Here you can add your custom Packages/Services. Just edit the source code :)</string>
+       <string>Here you can add your custom Package/Service</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="custom1_checkBox">
+     <widget class="QCheckBox" name="custom_checkBox">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>80</y>
+        <x>320</x>
+        <y>220</y>
         <width>151</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>My Super Service!</string>
+       <string>My Custom package!</string>
+      </property>
+     </widget>
+     <widget class="Line" name="custom_line">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>621</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="aptcache_checkBox">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>361</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add pre/post apt-get commands</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/terminal_icon.png</normaloff>:/icons/terminal_icon.png</iconset>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="customfile_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>291</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>/usr/bin/lolfile</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="searchfile_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>120</y>
+        <width>80</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Browse file</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="findfile_label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>391</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Find the custom the file to check:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="customcommand_label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>391</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Custom command to execute:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="custom_textEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>291</width>
+        <height>71</height>
+       </rect>
       </property>
      </widget>
     </widget>
