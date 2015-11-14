@@ -183,11 +183,11 @@ void RPiTC::on_pushButton_clicked()
         // SPICE
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
-                            "apt-get install -y virt-viewer libvirt0 libspice-client-gtk-3.0-4 libgtk-vnc-2.0-0\n";
+                            "apt-get install -y spice-client-gtk\n";
         }
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
-                            "apt-get remove --purge -y virt-viewer libvirt0 libspice-client-gtk-3.0-4 libgtk-vnc-2.0-0\n";
+                            "apt-get remove --purge -y spice-client-gtk\n";
         }
         // TN5250
         if (ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "not_present") { qDebug() << "I have to install TN5250!";
@@ -380,7 +380,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "X2GO Client Receiver missing"; ui->x2go_checkBox->setChecked(false); x2go_pkgs = "not_present";
         }
         // SPICE
-        if (QFile("/usr/bin/remote-viewer").exists()) {
+        if (QFile("/usr/bin/spicy").exists()) {
             qDebug() << "SPICE is installed"; ui->spice_checkBox->setChecked(true); spice_pkgs = "installed";
         } else {
             qDebug() << "SPICE missing"; ui->spice_checkBox->setChecked(false); spice_pkgs = "not_present";
