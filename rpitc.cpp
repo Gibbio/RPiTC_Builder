@@ -127,7 +127,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "not_present") { qDebug() << "I have to install RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Install cmds:\n"
                             "apt-get install -y rdesktop pcscd\n"
-                            "cp /opt/graphics/rdesktop.png /usr/share/pixmaps/;cp /opt/config/RDesktop.desktop /usr/share/applications/";
+                            "cp /opt/graphics/icons/rdesktop.png /usr/share/pixmaps/;cp /opt/config/RDesktop.desktop /usr/share/applications/";
         }
         if (!ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "installed") { qDebug() << "I have to remove RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Remove cmds:\n"
@@ -138,7 +138,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Install cmds:\n"
                             "apt-get install -y freerdp-x11 libfreerdp-plugins-standard gstreamer0.10-plugins-base\n"
-                            "cp /opt/graphics/xfreerdp.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP.desktop /usr/share/applications/\n";
+                            "cp /opt/graphics/icons/xfreerdp.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP.desktop /usr/share/applications/\n";
         }
         if (!ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Remove cmds:\n"
@@ -150,7 +150,7 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### XFREERDP GIT Install cmds:\n"
                             "apt-get install -y libssl1.0.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/xfreerdp -O /usr/bin/xfreerdp_git\nchmod +x /usr/bin/xfreerdp_git\n"
-                            "cp /opt/graphics/xfreerdp_git.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/\n";
+                            "cp /opt/graphics/icons/xfreerdp_git.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/\n";
         }
         if (!ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Remove cmds:\n"
@@ -161,7 +161,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "not_present") { qDebug() << "I have to install dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Install cmds:\n"
                             "apt-get install -y dfreerdp\n"
-                            "cp /opt/graphics/dfreerdp.png /usr/share/pixmaps/;cp /opt/config/dFreeRDP.desktop /usr/share/applications/\n";
+                            "cp /opt/graphics/icons/dfreerdp.png /usr/share/pixmaps/;cp /opt/config/dFreeRDP.desktop /usr/share/applications/\n";
         }
         if (!ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "installed") { qDebug() << "I have to remove dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Remove cmds:\n"
