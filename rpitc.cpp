@@ -227,16 +227,18 @@ void RPiTC::on_pushButton_clicked()
         // CUPS
         if (ui->cups_checkBox->isChecked() && cups_pkgs == "not_present") { qDebug() << "I have to install CUPS!";
         bash_me = bash_me + "\n####### CUPS Install cmds:\n"
-                            "apt-get install -y cups cups-browsed\n";
+                            "apt-get install -y cups cups-browsed printer-driver-gutenprint\n";
         }
         if (!ui->cups_checkBox->isChecked() && cups_pkgs == "installed") { qDebug() << "I have to remove CUPS!";
         bash_me = bash_me + "\n####### CUPS Remove cmds:\n"
-                            "apt-get remove --purge -y cups cups-browsed\n";
+                            "apt-get remove --purge -y cups cups-browsed printer-driver-gutenprint\n";
         }
         // X11VNC
         if (ui->vnc_checkBox->isChecked() && x11vnc_pkgs == "not_present") { qDebug() << "I have to install X11VNC Server!";
         bash_me = bash_me + "\n####### X11VNC Install cmds:\n"
-                            "apt-get install -y x11vnc\n"; //ADD PASSWORD!
+                            "apt-get install -y x11vnc\n"
+                            "\n# set vnc server default password to rpitc:\n"
+                            "x11vnc -storepasswd rpitc /home/rpitc/.x11vnc/passwd";
         }
         if (!ui->vnc_checkBox->isChecked() && x11vnc_pkgs == "installed") { qDebug() << "I have to remove X11VNC Server!";
         bash_me = bash_me + "\n####### X11VNC Remove cmds:\n"
@@ -245,7 +247,7 @@ void RPiTC::on_pushButton_clicked()
         // SSH
         if (ui->ssh_checkBox->isChecked() && ssh_pkgs == "not_present") { qDebug() << "I have to install SSH Server!";
         bash_me = bash_me + "\n####### SSH Install cmds:\n"
-                            "apt-get install -y openssh-server\n"; //ADD PASSWORD!
+                            "apt-get install -y openssh-server\n";
         }
         if (!ui->ssh_checkBox->isChecked() && ssh_pkgs == "installed") { qDebug() << "I have to remove SSH Server!";
         bash_me = bash_me + "\n####### SSH Remove cmds:\n"
@@ -254,7 +256,7 @@ void RPiTC::on_pushButton_clicked()
         // DOCKY
         if (ui->docky_checkBox->isChecked() && docky_pkgs == "not_present") { qDebug() << "I have to install Docky!";
         bash_me = bash_me + "\n####### DOCKY Install cmds:\n"
-                            "apt-get install -y docky\n"; //ADD DEFAULT CONF!
+                            "apt-get install -y docky\n";
         }
         if (!ui->docky_checkBox->isChecked() && docky_pkgs == "installed") { qDebug() << "I have to remove Docky!";
         bash_me = bash_me + "\n####### DOCKY Remove cmds:\n"
@@ -263,11 +265,12 @@ void RPiTC::on_pushButton_clicked()
         // CONKY
         if (ui->conky_checkBox->isChecked() && conky_pkgs == "not_present") { qDebug() << "I have to install Conky!";
         bash_me = bash_me + "\n####### CONKY Install cmds:\n"
-                            "apt-get install -y docky\n"; //ADD DEFAULT CONF!
+                            "apt-get install -y conky\n"
+                            "cp /opt/config/Conky.autostart /home/rpitc/.config/autostart/\n";
         }
         if (!ui->conky_checkBox->isChecked() && conky_pkgs == "installed") { qDebug() << "I have to remove Conky!";
         bash_me = bash_me + "\n####### CONKY Remove cmds:\n"
-                            "apt-get remove --purge -y docky\n";
+                            "apt-get remove --purge -y conky\n";
         }
         // VIRTUALHERE
         if (ui->virtualhere_checkBox->isChecked() && virtualhere_pkgs == "not_present") { qDebug() << "I have to install VirtualHere USB Server!";
@@ -322,7 +325,7 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n\n####### clean up all the unecessary package and the apt-get cache:\n"
                             "apt-get autoremove --purge -y\napt-get clean\n";
     }
-    bash_me = bash_me + "\n# send sync flush file system buffers\n"
+    bash_me = bash_me + "\n####### Send sync to flush the file system buffers\n"
                         "sync";
 
     //finalizing bash me and putting it to file:
