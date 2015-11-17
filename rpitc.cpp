@@ -132,12 +132,14 @@ void RPiTC::on_pushButton_clicked()
         if (ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "not_present") { qDebug() << "I have to install RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Install cmds:\n"
                             "apt-get install -y rdesktop pcscd\n"
-                            "cp /opt/graphics/icons/rdesktop.png /usr/share/pixmaps/;cp /opt/config/RDesktop.desktop /usr/share/applications/";
+                            "cp /opt/graphics/icons/rdesktop.png /usr/share/pixmaps/;cp /opt/config/RDesktop.desktop /usr/share/applications/"
+                            "\n# add icon to docky menu:\n/opt/scripts/dockyadd.sh RDesktop.desktop\n";
         }
         if (!ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "installed") { qDebug() << "I have to remove RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Remove cmds:\n"
                             "apt-get remove --purge -y rdesktop pcscd\n"
-                            "rm -fr /usr/share/pixmaps/rdesktop.png /usr/share/applications/RDesktop.desktop\n";
+                            "rm -fr /usr/share/pixmaps/rdesktop.png /usr/share/applications/RDesktop.desktop\n"
+                            "\n# remove icon from docky menu:\n/opt/scripts/dockyrm.sh RDesktop.desktop\n";
         }
         // XFREERDP DEB
         if (ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP DEB!";
