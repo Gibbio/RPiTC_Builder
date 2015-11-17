@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RPiTC beta!</string>
+   <string>RPiTC Builder (beta!)</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="rpitc_tabWidget">
@@ -244,7 +244,7 @@
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
-           <normaloff>:/icons/spice_icon.png</normaloff>:/icons/spice_icon.png</iconset>
+           <normaloff>:/icons/spicy_icon.png</normaloff>:/icons/spicy_icon.png</iconset>
          </property>
         </widget>
        </item>

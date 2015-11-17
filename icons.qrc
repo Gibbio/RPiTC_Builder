@@ -28,5 +28,6 @@
         <file>icons/bashme_icon.png</file>
         <file>icons/rescan_icon.png</file>
         <file>icons/terminal_icon.png</file>
+        <file>icons/spicy_icon.png</file>
     </qresource>
 </RCC>

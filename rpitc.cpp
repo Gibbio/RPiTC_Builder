@@ -363,7 +363,7 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n\n####### clean up all the unecessary package and the apt-get cache:\n"
                             "apt-get autoremove --purge -y\napt-get clean\n";
     }
-    bash_me = bash_me + "\n####### Send sync to flush the file system buffers\n"
+    bash_me = bash_me + "\n\n####### Send sync to flush the file system buffers\n"
                         "sync";
 
     //finalizing bash me and putting it to file:
