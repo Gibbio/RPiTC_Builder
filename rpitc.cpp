@@ -64,20 +64,24 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### CITRIX RECEIVER Install cmds:\n"
                             "apt-get install -y icaclient ctxusb libcurl4-gnutls-dev\nsystemctl enable ctxusbd\n"
                             "ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/\n"
-                            "c_rehash /opt/Citrix/ICAClient/keystore/cacerts/\n";
+                            "c_rehash /opt/Citrix/ICAClient/keystore/cacerts/\n"
+                            "# Add ICA icon to docky menu:\n/opt/scripts/dockyadd.sh selfservice.desktop\n";
         }
         if (!ui->ica_checkBox->isChecked() && ica_pkgs == "installed") { qDebug() << "I have to remove Citrix Receiver!";
         bash_me = bash_me + "\n####### CITRIX RECEIVER Remove cmds:\n"
-                            "apt-get remove --purge -y icaclient ctxusb\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n";
+                            "apt-get remove --purge -y icaclient ctxusb\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n"
+                            "# Remove ICA icon from docky menu:\n/opt/scripts/dockyrm.sh selfservice.desktop\n";
         }
         // PARALLELS 2X:
         if (ui->twox_checkBox->isChecked() && twox_pkgs == "not_present") { qDebug() << "I have to install Parallel 2X!";
         bash_me = bash_me + "\n####### PARALLELS 2X Install cmds:\n"
-                            "apt-get install -y 2xclient libqtdbus4 libqt4-network\n";
+                            "apt-get install -y 2xclient libqtdbus4 libqt4-network\n"
+                            "# Add 2X icon to docky menu:\n/opt/scripts/dockyadd.sh 2xclient.desktop\n";
         }
         if (!ui->twox_checkBox->isChecked() && twox_pkgs == "installed") { qDebug() << "I have to remove Parallel 2X!";
         bash_me = bash_me + "\n####### PARALLELS 2X Remove cmds:\n"
-                            "apt-get remove --purge -y 2xclient\n";
+                            "apt-get remove --purge -y 2xclient\n"
+                            "# Remove 2X icon from docky menu:\n/opt/scripts/dockyrm.sh 2xclient.desktop\n";
         }
         // NOMACHINE NX
         if (ui->nomachine_checkBox->isChecked() && nxc_pkgs == "not_present") { qDebug() << "I have to install NoMachine!";
@@ -85,12 +89,14 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get install -y xdg-user-dirs\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/nxplayer.tar.gz -O /tmp/nxplayer.tar.gz\ntar xf /tmp/nxplayer.tar.gz -C /usr/\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/nxclient.tar.gz -O /tmp/nxclient.tar.gz\ntar xf /tmp/nxclient.tar.gz -C /usr/\n"
-                            "cp /usr/NX/share/applnk/client/network/nxplayer.desktop /usr/share/applications/\n";
+                            "cp /usr/NX/share/applnk/client/network/nxplayer.desktop /usr/share/applications/\n"
+                            "# Add NX icon to docky menu:\n/opt/scripts/dockyadd.sh nxplayer.desktop\n";
         }
         if (!ui->nomachine_checkBox->isChecked() && nxc_pkgs == "installed") { qDebug() << "I have to remove NoMachine!";
         bash_me = bash_me + "\n####### NOMACHINE NX Remove cmds:\n"
                             "apt-get remove --purge -y xdg-user-dirs\n"
-                            "rm -fr /usr/NX/ /usr/share/applications/nxplayer.desktop\n";
+                            "rm -fr /usr/NX/ /usr/share/applications/nxplayer.desktop\n"
+                            "# Remove NX icon from docky menu:\n/opt/scripts/dockyrm.sh nxplayer.desktop\n";
         }
         // VMWARE HORIZON
         if (ui->vmware_checkBox->isChecked() && vmware_pkgs == "not_present") { qDebug() << "I have to install VMWare Horizon!";
@@ -98,32 +104,38 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get install libudev1\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/vmwh350.tar.gz -O /tmp/vmwh350.tar.gz\ntar xf /tmp/vmwh350.tar.gz -C /\n"
-                            "mv /opt/scripts/vmwareusbd /etc/init.d/\nsystemctl enable /etc/init.d/vmwareusbd\nsystemctl start vmwareusbd\n";
+                            "mv /opt/scripts/vmwareusbd /etc/init.d/\nsystemctl enable /etc/init.d/vmwareusbd\nsystemctl start vmwareusbd\n"
+                            "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-horizon.desktop\n";
         }
         if (!ui->vmware_checkBox->isChecked() && vmware_pkgs == "installed") { qDebug() << "I have to remove VMWare Horizon!";
         bash_me = bash_me + "\n####### VMWARE HORIZON Remove cmds:\n"
                             "apt-get remove --purge -y libudev1\n"
                             "rm -rf /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "systemctl disable vmwareusbd\n"
-                            "find /|grep -i vmware |xargs rm -fr;find /|grep -i pcoip |xargs rm -fr\n";
+                            "find /|grep -i vmware |xargs rm -fr;find /|grep -i pcoip |xargs rm -fr\n"
+                            "# Remove Horizon icon from docky menu:\n/opt/scripts/dockyrm.sh vmware-horizon.desktop\n";
         }
         // THINLINC
         if (ui->thinlinc_checkBox->isChecked() && thinlinc_pkgs == "not_present") { qDebug() << "I have to install ThinLinc!";
         bash_me = bash_me + "\n####### THINLINC Install cmds:\n"
-                            "apt-get install -y thinlinc-client\n";
+                            "apt-get install -y thinlinc-client\n"
+                            "# Add Thinlinc icon to docky menu:\n/opt/scripts/dockyadd.sh thinlinc-client.desktop\n";
         }
         if (!ui->thinlinc_checkBox->isChecked() && thinlinc_pkgs == "installed") { qDebug() << "I have to remove ThinLinc!";
         bash_me = bash_me + "\n####### THINLINC Remove cmds:\n"
-                            "apt-get remove --purge -y thinlinc-client\n";
+                            "apt-get remove --purge -y thinlinc-client\n"
+                            "# Remove Thinlinc icon from docky menu:\n/opt/scripts/dockyrm.sh thinlinc-client.desktop\n";
         }
         // BROWSER
         if (ui->browser_checkBox->isChecked() && browser_pkgs == "not_present") { qDebug() << "I have to install Iceweasel/Firefox!";
         bash_me = bash_me + "\n####### BROWSER Install cmds:\n"
-                            "apt-get install -y iceweasel\n";
+                            "apt-get install -y iceweasel\n"
+                            "# Add Iceweasel icon to docky menu:\n/opt/scripts/dockyadd.sh iceweasel.desktop\n";
         }
         if (!ui->browser_checkBox->isChecked() && browser_pkgs == "installed") { qDebug() << "I have to remove Iceweasel/Firefox!";
         bash_me = bash_me + "\n####### BROWSER Remove cmds:\n"
-                            "apt-get remove --purge -y iceweasel\n";
+                            "apt-get remove --purge -y iceweasel\n"
+                            "# Remove Iceweasel icon from docky menu:\n/opt/scripts/dockyrm.sh iceweasel.desktop\n";
         }
     }
     //######################START RDP CLIENTS INSTALLATION/REMOVE ROUTINES##################ßß
@@ -133,47 +145,53 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### RDESKTOP Install cmds:\n"
                             "apt-get install -y rdesktop pcscd\n"
                             "cp /opt/graphics/icons/rdesktop.png /usr/share/pixmaps/;cp /opt/config/RDesktop.desktop /usr/share/applications/"
-                            "\n# add icon to docky menu:\n/opt/scripts/dockyadd.sh RDesktop.desktop\n";
+                            "# Add RDesktop icon to docky menu:\n/opt/scripts/dockyadd.sh RDesktop.desktop\n";
         }
         if (!ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "installed") { qDebug() << "I have to remove RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Remove cmds:\n"
                             "apt-get remove --purge -y rdesktop pcscd\n"
                             "rm -fr /usr/share/pixmaps/rdesktop.png /usr/share/applications/RDesktop.desktop\n"
-                            "\n# remove icon from docky menu:\n/opt/scripts/dockyrm.sh RDesktop.desktop\n";
+                            "# Remove RDesktop icon from docky menu:\n/opt/scripts/dockyrm.sh RDesktop.desktop\n";
         }
         // XFREERDP DEB
         if (ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Install cmds:\n"
                             "apt-get install -y freerdp-x11 libfreerdp-plugins-standard gstreamer0.10-plugins-base\n"
-                            "cp /opt/graphics/icons/xfreerdp.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP.desktop /usr/share/applications/\n";
+                            "cp /opt/graphics/icons/xfreerdp.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP.desktop /usr/share/applications/\n"
+                            "# Add xFreeRDP_DEB icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP.desktop\n";
         }
         if (!ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Remove cmds:\n"
                             "apt-get remove --purge -y freerdp-x11 libfreerdp-plugins-standard\n"
-                            "rm -fr /usr/share/pixmaps/xfreerdp.png /usr/share/applications/xFreeRDP.desktop\n";
+                            "rm -fr /usr/share/pixmaps/xfreerdp.png /usr/share/applications/xFreeRDP.desktop\n"
+                            "# Remove xFreeRDP_DEB icon from docky menu:\n/opt/scripts/dockyrm.sh xFreeRDP.desktop\n";
         }
         // XFREERDP GIT
         if (ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Install cmds:\n"
                             "apt-get install -y libssl1.0.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/xfreerdp -O /usr/bin/xfreerdp_git\nchmod +x /usr/bin/xfreerdp_git\n"
-                            "cp /opt/graphics/icons/xfreerdp_git.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/\n";
+                            "cp /opt/graphics/icons/xfreerdp_git.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/\n"
+                            "# Add xFreeRDP_GIT icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP_GIT.desktop\n";
         }
         if (!ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Remove cmds:\n"
                             "apt-get remove --purge -y libssl1.0.0\n"
-                            "rm -fr /usr/share/pixmaps/xfreerdp_git.png /usr/share/applications/xFreeRDP_GIT.desktop /usr/bin/xfreerdp_git\n";
+                            "rm -fr /usr/share/pixmaps/xfreerdp_git.png /usr/share/applications/xFreeRDP_GIT.desktop /usr/bin/xfreerdp_git\n"
+                            "# Remove xFreeRDP_GIT icon from docky menu:\n/opt/scripts/dockyrm.sh xFreeRDP_GIT.desktop\n";
         }
         // DFREERDP
         if (ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "not_present") { qDebug() << "I have to install dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Install cmds:\n"
                             "apt-get install -y dfreerdp\n"
-                            "cp /opt/graphics/icons/dfreerdp.png /usr/share/pixmaps/;cp /opt/config/dFreeRDP.desktop /usr/share/applications/\n";
+                            "cp /opt/graphics/icons/dfreerdp.png /usr/share/pixmaps/;cp /opt/config/dFreeRDP.desktop /usr/share/applications/\n"
+                            "# Add dFreeRDP icon to docky menu:\n/opt/scripts/dockyadd.sh dFreeRDP.desktop\n";
         }
         if (!ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "installed") { qDebug() << "I have to remove dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Remove cmds:\n"
                             "apt-get remove --purge -y dfreerdp\n"
-                            "rm -fr /usr/share/pixmaps/dfreerdp.png /usr/share/applications/dFreeRDP.desktop\n";
+                            "rm -fr /usr/share/pixmaps/dfreerdp.png /usr/share/applications/dFreeRDP.desktop\n"
+                            "# Remove dFreeRDP icon from docky menu:\n/opt/scripts/dockyrm.sh dFreeRDP.desktop\n";
         }
     }
     //######################START OTHER CLIENTS INSTALLATION/REMOVE ROUTINES################ßß
@@ -181,47 +199,65 @@ void RPiTC::on_pushButton_clicked()
         // X2GO CLIENT:
         if (ui->x2go_checkBox->isChecked() && x2go_pkgs == "not_present") { qDebug() << "I have to install x2go client!";
         bash_me = bash_me + "\n####### X2GO CLIENT Install cmds:\n"
-                            "apt-get install -y x2goclient \n";
+                            "apt-get install -y x2goclient\n"
+                            "# Add X2GO icon to docky menu:\n/opt/scripts/dockyadd.sh x2goclient.desktop\n";
         }
         if (!ui->x2go_checkBox->isChecked() && x2go_pkgs == "installed") { qDebug() << "I have to remove x2go client!";
         bash_me = bash_me + "\n####### X2GO CLIENT Remove cmds:\n"
-                            "apt-get remove --purge -y x2goclient\n";
+                            "apt-get remove --purge -y x2goclient\n"
+                            "# Remove X2GO icon from docky menu:\n/opt/scripts/dockyrm.sh x2goclient.desktop\n";
         }
         // SPICE
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
-                            "apt-get install -y spice-client-gtk\n";
+                            "apt-get install -y spice-client-gtk\n"
+                            "cp /opt/graphics/icons/spicy.png /usr/share/pixmaps/;cp /opt/config/spicy.desktop /usr/share/applications/\n"
+                            "# Add SPICE icon to docky menu:\n/opt/scripts/dockyadd.sh spicy.desktop\n";
         }
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
-                            "apt-get remove --purge -y spice-client-gtk\n";
+                            "apt-get remove --purge -y spice-client-gtk\n"
+                            "rm -fr /usr/share/pixmaps/spicy.png /usr/share/applications/spicy.desktop\n"
+                            "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh spicy.desktop\n";
         }
         // TN5250
         if (ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "not_present") { qDebug() << "I have to install TN5250!";
         bash_me = bash_me + "\n####### TN5250 Install cmds:\n"
-                            "apt-get install -y tn5250\n";
+                            "apt-get install -y tn5250\n"
+                            "cp /opt/graphics/icons/tn5250.png /usr/share/pixmaps/;cp /opt/config/tn5250.desktop /usr/share/applications/\n"
+                            "# Add TN5250 icon to docky menu:\n/opt/scripts/dockyadd.sh tn5250.desktop\n";
         }
         if (!ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "installed") { qDebug() << "I have to remove TN5250!";
         bash_me = bash_me + "\n####### TN5250 Remove cmds:\n"
-                            "apt-get remove --purge -y tn5250\n";
+                            "apt-get remove --purge -y tn5250\n"
+                            "rm -fr /usr/share/pixmaps/tn5250.png /usr/share/applications/tn5250.desktop\n"
+                            "# Remove TN5250 icon from docky menu:\n/opt/scripts/dockyrm.sh tn5250.desktop\n";
         }
         // x3270
         if (ui->x3270_checkBox->isChecked() && x3270_pkgs == "not_present") { qDebug() << "I have to install x3270!";
         bash_me = bash_me + "\n####### x3270 Install cmds:\n"
-                            "apt-get install -y suite3270\n";
+                            "apt-get install -y suite3270\n"
+                            "cp /opt/graphics/icons/x3270.png /usr/share/pixmaps/;cp /opt/config/x3270.desktop /usr/share/applications/\n"
+                            "# Add x3270 icon to docky menu:\n/opt/scripts/dockyadd.sh x3270.desktop\n";
         }
         if (!ui->x3270_checkBox->isChecked() && x3270_pkgs == "installed") { qDebug() << "I have to remove x3270!";
         bash_me = bash_me + "\n####### x3270 Remove cmds:\n"
-                            "apt-get remove --purge -y suite3270\n";
+                            "apt-get remove --purge -y suite3270\n"
+                            "rm -fr /usr/share/pixmaps/x3270.png /usr/share/applications/x3270.desktop\n"
+                            "# Remove x3270 icon from docky menu:\n/opt/scripts/dockyrm.sh x3270.desktop\n";
         }
         // XEPHYR
         if (ui->xephyr_checkBox->isChecked() && xephyr_pkgs == "not_present") { qDebug() << "I have to install Xephyr!";
         bash_me = bash_me + "\n####### XEPHYR Install cmds:\n"
-                            "apt-get install -y xserver-xephyr\n";
+                            "apt-get install -y xserver-xephyr\n"
+                            "cp /opt/graphics/icons/xephyr.png /usr/share/pixmaps/;cp /opt/config/Xephyr.desktop /usr/share/applications/\n"
+                            "# Add Xephyr icon to docky menu:\n/opt/scripts/dockyadd.sh Xephyr.desktop\n";
         }
         if (!ui->xephyr_checkBox->isChecked() && xephyr_pkgs == "installed") { qDebug() << "I have to remove Xephyr!";
         bash_me = bash_me + "\n####### XEPHYR Remove cmds:\n"
-                            "apt-get remove --purge -y xserver-xephyr\n";
+                            "apt-get remove --purge -y xserver-xephyr\n"
+                            "rm -fr /usr/share/pixmaps/xephyr.png /usr/share/applications/Xephyr.desktop\n"
+                            "# Remove Xephyr icon from docky menu:\n/opt/scripts/dockyrm.sh Xephyr.desktop\n";
         }
     }
     //######################START OS SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
