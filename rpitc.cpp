@@ -109,10 +109,9 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->vmware_checkBox->isChecked() && vmware_pkgs == "installed") { qDebug() << "I have to remove VMWare Horizon!";
         bash_me = bash_me + "\n####### VMWARE HORIZON Remove cmds:\n"
-                            "apt-get remove --purge -y libudev1\n"
                             "rm -rf /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "systemctl disable vmwareusbd\n"
-                            "find /|grep -i vmware |xargs rm -fr;find /|grep -i pcoip |xargs rm -fr\n"
+                            "find /lib/|grep -i vmware |xargs rm -fr;find /usr/|grep -i vmware |xargs rm -fr;find /|grep -i pcoip |xargs rm -fr\n"
                             "# Remove Horizon icon from docky menu:\n/opt/scripts/dockyrm.sh vmware-horizon.desktop\n";
         }
         // THINLINC
