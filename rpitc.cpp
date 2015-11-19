@@ -104,14 +104,14 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get install libudev1\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/vmwh350.tar.gz -O /tmp/vmwh350.tar.gz\ntar xf /tmp/vmwh350.tar.gz -C /\n"
-                            "mv /opt/scripts/vmwareusbd /etc/init.d/\nsystemctl enable /etc/init.d/vmwareusbd\nsystemctl start vmwareusbd\n"
+                            "systemctl enable /etc/init.d/vmwareusbd\nsystemctl start vmwareusbd\n"
                             "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-horizon.desktop\n";
         }
         if (!ui->vmware_checkBox->isChecked() && vmware_pkgs == "installed") { qDebug() << "I have to remove VMWare Horizon!";
         bash_me = bash_me + "\n####### VMWARE HORIZON Remove cmds:\n"
                             "rm -rf /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "systemctl disable vmwareusbd\n"
-                            "find /lib/|grep -i vmware |xargs rm -fr;find /usr/|grep -i vmware |xargs rm -fr;find /|grep -i pcoip |xargs rm -fr\n"
+                            "find /etc/|grep -i vmware |xargs rm -fr;find /lib/|grep -i vmware |xargs rm -fr;find /usr/|grep -i vmware |xargs rm -fr;find /|grep -i pcoip |xargs rm -fr\n"
                             "# Remove Horizon icon from docky menu:\n/opt/scripts/dockyrm.sh vmware-horizon.desktop\n";
         }
         // THINLINC
