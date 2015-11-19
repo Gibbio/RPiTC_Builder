@@ -143,7 +143,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "not_present") { qDebug() << "I have to install RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Install cmds:\n"
                             "apt-get install -y rdesktop pcscd\n"
-                            "ln -s /opt/config/RDesktop.desktop /usr/share/applications/RDesktop.desktop"
+                            "ln -s /opt/config/RDesktop.desktop /usr/share/applications/RDesktop.desktop\n"
                             "# Add RDesktop icon to docky menu:\n/opt/scripts/dockyadd.sh RDesktop.desktop\n";
         }
         if (!ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "installed") { qDebug() << "I have to remove RDesktop!";
@@ -156,7 +156,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Install cmds:\n"
                             "apt-get install -y freerdp-x11 libfreerdp-plugins-standard gstreamer0.10-plugins-base\n"
-                            "ln -s cp /opt/config/xFreeRDP.desktop /usr/share/applications/xFreeRDP.desktop\n"
+                            "ln -s /opt/config/xFreeRDP.desktop /usr/share/applications/xFreeRDP.desktop\n"
                             "# Add xFreeRDP_DEB icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP.desktop\n";
         }
         if (!ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP DEB!";
@@ -210,52 +210,52 @@ void RPiTC::on_pushButton_clicked()
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
                             "apt-get install -y spice-client-gtk\n"
-                            "cp /opt/graphics/icons/spicy.png /usr/share/pixmaps/;cp /opt/config/spicy.desktop /usr/share/applications/\n"
+                            "ln -s /opt/config/spicy.desktop /usr/share/applications/spicy.desktop\n"
                             "# Add SPICE icon to docky menu:\n/opt/scripts/dockyadd.sh spicy.desktop\n";
         }
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
                             "apt-get remove --purge -y spice-client-gtk\n"
-                            "rm -fr /usr/share/pixmaps/spicy.png /usr/share/applications/spicy.desktop\n"
+                            "rm -fr /usr/share/applications/spicy.desktop\n"
                             "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh spicy.desktop\n";
         }
         // TN5250
         if (ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "not_present") { qDebug() << "I have to install TN5250!";
         bash_me = bash_me + "\n####### TN5250 Install cmds:\n"
                             "apt-get install -y tn5250\n"
-                            "cp /opt/graphics/icons/tn5250.png /usr/share/pixmaps/;cp /opt/config/tn5250.desktop /usr/share/applications/\n"
+                            "ln -s /opt/config/tn5250.desktop /usr/share/applications/tn5250.desktop\n"
                             "# Add TN5250 icon to docky menu:\n/opt/scripts/dockyadd.sh tn5250.desktop\n";
         }
         if (!ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "installed") { qDebug() << "I have to remove TN5250!";
         bash_me = bash_me + "\n####### TN5250 Remove cmds:\n"
                             "apt-get remove --purge -y tn5250\n"
-                            "rm -fr /usr/share/pixmaps/tn5250.png /usr/share/applications/tn5250.desktop\n"
+                            "rm -fr /usr/share/applications/tn5250.desktop\n"
                             "# Remove TN5250 icon from docky menu:\n/opt/scripts/dockyrm.sh tn5250.desktop\n";
         }
         // x3270
         if (ui->x3270_checkBox->isChecked() && x3270_pkgs == "not_present") { qDebug() << "I have to install x3270!";
         bash_me = bash_me + "\n####### x3270 Install cmds:\n"
                             "apt-get install -y suite3270\n"
-                            "cp /opt/graphics/icons/x3270.png /usr/share/pixmaps/;cp /opt/config/x3270.desktop /usr/share/applications/\n"
+                            "ln -s /opt/config/x3270.desktop /usr/share/applications/x3270.desktop\n"
                             "# Add x3270 icon to docky menu:\n/opt/scripts/dockyadd.sh x3270.desktop\n";
         }
         if (!ui->x3270_checkBox->isChecked() && x3270_pkgs == "installed") { qDebug() << "I have to remove x3270!";
         bash_me = bash_me + "\n####### x3270 Remove cmds:\n"
                             "apt-get remove --purge -y suite3270\n"
-                            "rm -fr /usr/share/pixmaps/x3270.png /usr/share/applications/x3270.desktop\n"
+                            "rm -fr /usr/share/applications/x3270.desktop\n"
                             "# Remove x3270 icon from docky menu:\n/opt/scripts/dockyrm.sh x3270.desktop\n";
         }
         // XEPHYR
         if (ui->xephyr_checkBox->isChecked() && xephyr_pkgs == "not_present") { qDebug() << "I have to install Xephyr!";
         bash_me = bash_me + "\n####### XEPHYR Install cmds:\n"
                             "apt-get install -y xserver-xephyr\n"
-                            "cp /opt/graphics/icons/xephyr.png /usr/share/pixmaps/;cp /opt/config/Xephyr.desktop /usr/share/applications/\n"
+                            "ln -s /opt/config/Xephyr.desktop /usr/share/applications/Xephyr.desktop\n"
                             "# Add Xephyr icon to docky menu:\n/opt/scripts/dockyadd.sh Xephyr.desktop\n";
         }
         if (!ui->xephyr_checkBox->isChecked() && xephyr_pkgs == "installed") { qDebug() << "I have to remove Xephyr!";
         bash_me = bash_me + "\n####### XEPHYR Remove cmds:\n"
                             "apt-get remove --purge -y xserver-xephyr\n"
-                            "rm -fr /usr/share/pixmaps/xephyr.png /usr/share/applications/Xephyr.desktop\n"
+                            "rm -fr /usr/share/applications/Xephyr.desktop\n"
                             "# Remove Xephyr icon from docky menu:\n/opt/scripts/dockyrm.sh Xephyr.desktop\n";
         }
     }
