@@ -143,26 +143,26 @@ void RPiTC::on_pushButton_clicked()
         if (ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "not_present") { qDebug() << "I have to install RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Install cmds:\n"
                             "apt-get install -y rdesktop pcscd\n"
-                            "cp /opt/graphics/icons/rdesktop.png /usr/share/pixmaps/;cp /opt/config/RDesktop.desktop /usr/share/applications/"
+                            "ln -s /opt/config/RDesktop.desktop /usr/share/applications/RDesktop.desktop"
                             "# Add RDesktop icon to docky menu:\n/opt/scripts/dockyadd.sh RDesktop.desktop\n";
         }
         if (!ui->rdesktop_checkBox->isChecked() && rdesktop_pkgs == "installed") { qDebug() << "I have to remove RDesktop!";
         bash_me = bash_me + "\n####### RDESKTOP Remove cmds:\n"
                             "apt-get remove --purge -y rdesktop pcscd\n"
-                            "rm -fr /usr/share/pixmaps/rdesktop.png /usr/share/applications/RDesktop.desktop\n"
+                            "rm -fr /usr/share/applications/RDesktop.desktop\n"
                             "# Remove RDesktop icon from docky menu:\n/opt/scripts/dockyrm.sh RDesktop.desktop\n";
         }
         // XFREERDP DEB
         if (ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Install cmds:\n"
                             "apt-get install -y freerdp-x11 libfreerdp-plugins-standard gstreamer0.10-plugins-base\n"
-                            "cp /opt/graphics/icons/xfreerdp.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP.desktop /usr/share/applications/\n"
+                            "ln -s cp /opt/config/xFreeRDP.desktop /usr/share/applications/xFreeRDP.desktop\n"
                             "# Add xFreeRDP_DEB icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP.desktop\n";
         }
         if (!ui->xfreerdp_checkBox->isChecked() && xfreerdp_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP DEB!";
         bash_me = bash_me + "\n####### XFREERDP DEB Remove cmds:\n"
                             "apt-get remove --purge -y freerdp-x11 libfreerdp-plugins-standard\n"
-                            "rm -fr /usr/share/pixmaps/xfreerdp.png /usr/share/applications/xFreeRDP.desktop\n"
+                            "rm -fr /usr/share/applications/xFreeRDP.desktop\n"
                             "# Remove xFreeRDP_DEB icon from docky menu:\n/opt/scripts/dockyrm.sh xFreeRDP.desktop\n";
         }
         // XFREERDP GIT
@@ -170,26 +170,26 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### XFREERDP GIT Install cmds:\n"
                             "apt-get install -y libssl1.0.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/xfreerdp -O /usr/bin/xfreerdp_git\nchmod +x /usr/bin/xfreerdp_git\n"
-                            "cp /opt/graphics/icons/xfreerdp_git.png /usr/share/pixmaps/;cp /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/\n"
+                            "ln -s /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/xFreeRDP_GIT.desktop\n"
                             "# Add xFreeRDP_GIT icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP_GIT.desktop\n";
         }
         if (!ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Remove cmds:\n"
                             "apt-get remove --purge -y libssl1.0.0\n"
-                            "rm -fr /usr/share/pixmaps/xfreerdp_git.png /usr/share/applications/xFreeRDP_GIT.desktop /usr/bin/xfreerdp_git\n"
+                            "rm -fr /usr/share/applications/xFreeRDP_GIT.desktop /usr/bin/xfreerdp_git\n"
                             "# Remove xFreeRDP_GIT icon from docky menu:\n/opt/scripts/dockyrm.sh xFreeRDP_GIT.desktop\n";
         }
         // DFREERDP
         if (ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "not_present") { qDebug() << "I have to install dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Install cmds:\n"
                             "apt-get install -y dfreerdp\n"
-                            "cp /opt/graphics/icons/dfreerdp.png /usr/share/pixmaps/;cp /opt/config/dFreeRDP.desktop /usr/share/applications/\n"
+                            "ln -s /opt/config/dFreeRDP.desktop /usr/share/applications/FreeRDP.desktop\n"
                             "# Add dFreeRDP icon to docky menu:\n/opt/scripts/dockyadd.sh dFreeRDP.desktop\n";
         }
         if (!ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "installed") { qDebug() << "I have to remove dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Remove cmds:\n"
                             "apt-get remove --purge -y dfreerdp\n"
-                            "rm -fr /usr/share/pixmaps/dfreerdp.png /usr/share/applications/dFreeRDP.desktop\n"
+                            "rm -fr /usr/share/applications/dFreeRDP.desktop\n"
                             "# Remove dFreeRDP icon from docky menu:\n/opt/scripts/dockyrm.sh dFreeRDP.desktop\n";
         }
     }

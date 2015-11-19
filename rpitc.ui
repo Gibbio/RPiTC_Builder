@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>RPiTC Builder (beta!)</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/rpitc-builder-icon.png</normaloff>:/icons/rpitc-builder-icon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="rpitc_tabWidget">
     <property name="geometry">

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string/>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/rpitc-builder-icon.png</normaloff>:/icons/rpitc-builder-icon.png</iconset>
+  </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
   </property>
