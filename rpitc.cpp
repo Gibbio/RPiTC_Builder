@@ -512,7 +512,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "Conky missing"; ui->conky_checkBox->setChecked(false); conky_pkgs = "not_present";
         }
         // VIRTUALHERE
-        if (QFile("/usr/bin/vhusbd").exists()) {
+        if (QFile("/usr/bin/vhusbdarmpi2").exists()) {
             qDebug() << "VirtualHere USB Server is installed"; ui->virtualhere_checkBox->setChecked(true); virtualhere_pkgs = "installed";
         } else {
             qDebug() << "VirtualHere USB Server missing"; ui->virtualhere_checkBox->setChecked(false); virtualhere_pkgs = "not_present";
