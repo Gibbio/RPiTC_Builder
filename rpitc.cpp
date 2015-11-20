@@ -183,7 +183,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "not_present") { qDebug() << "I have to install dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Install cmds:\n"
                             "apt-get install -y dfreerdp\n"
-                            "ln -s /opt/config/dFreeRDP.desktop /usr/share/applications/FreeRDP.desktop\n"
+                            "ln -s /opt/config/dFreeRDP.desktop /usr/share/applications/dFreeRDP.desktop\n"
                             "# Add dFreeRDP icon to docky menu:\n/opt/scripts/dockyadd.sh dFreeRDP.desktop\n";
         }
         if (!ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "installed") { qDebug() << "I have to remove dFreeRDP!";
