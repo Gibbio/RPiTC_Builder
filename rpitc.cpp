@@ -312,11 +312,12 @@ void RPiTC::on_pushButton_clicked()
         // VIRTUALHERE
         if (ui->virtualhere_checkBox->isChecked() && virtualhere_pkgs == "not_present") { qDebug() << "I have to install VirtualHere USB Server!";
         bash_me = bash_me + "\n####### VIRTUALHERE Install cmds:\n"
-                            "wget https://www.virtualhere.com/sites/default/files/usbserver/vhusbdarmpi2 -O /usr/bin/vhusbd\n"; //ADD SERVICE???
+                            "wget https://www.virtualhere.com/sites/default/files/usbserver/vhusbdarmpi2 -O /usr/bin/vhusbdarmpi2\n"
+                            "cp /opt/scripts/vhusbdarmpi2 /etc/init.d/;systemctl enable vhusbdarmpi2;systemctl start vhusbdarmpi2\n";
         }
         if (!ui->virtualhere_checkBox->isChecked() && virtualhere_pkgs == "installed") { qDebug() << "I have to remove VirtualHere USB Server!";
         bash_me = bash_me + "\n####### VIRTUALHERE Remove cmds:\n"
-                            "rm -fr /usr/bin/vhusbd\n";
+                            "systemctl stop vhusbdarmpi2;systemctl disable vhusbdarmpi2;rm -fr /usr/bin/vhusbdarmpi2 /etc/init.d/vhusbdarmpi2\n";
         }
         // OPENCONNECT
         if (ui->openconnect_checkBox->isChecked() && openconnect_pkgs == "not_present") { qDebug() << "I have to install Openconnect VPN!";
