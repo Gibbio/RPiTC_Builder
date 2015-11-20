@@ -268,7 +268,7 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->cups_checkBox->isChecked() && cups_pkgs == "installed") { qDebug() << "I have to remove CUPS!";
         bash_me = bash_me + "\n####### CUPS Remove cmds:\n"
-                            "apt-get remove --purge -y cups cups-browsed printer-driver-gutenprint\n";
+                            "apt-get remove --purge -y cups cups-common cups-browsed printer-driver-gutenprint\n";
         }
         // X11VNC
         if (ui->vnc_checkBox->isChecked() && x11vnc_pkgs == "not_present") { qDebug() << "I have to install X11VNC Server!";
