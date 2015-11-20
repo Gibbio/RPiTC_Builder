@@ -89,7 +89,7 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get install -y xdg-user-dirs\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/nxplayer.tar.gz -O /tmp/nxplayer.tar.gz\ntar xf /tmp/nxplayer.tar.gz -C /usr/\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/nxclient.tar.gz -O /tmp/nxclient.tar.gz\ntar xf /tmp/nxclient.tar.gz -C /usr/\n"
-                            "cp /usr/NX/share/applnk/client/network/nxplayer.desktop /usr/share/applications/\n"
+                            "ln -s /usr/NX/share/applnk/client/network/nxplayer.desktop /usr/share/applications/nxplayer.desktop\n"
                             "# Add NX icon to docky menu:\n/opt/scripts/dockyadd.sh nxplayer.desktop\n";
         }
         if (!ui->nomachine_checkBox->isChecked() && nxc_pkgs == "installed") { qDebug() << "I have to remove NoMachine!";
