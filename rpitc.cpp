@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QProcess>
 
 QString ica_pkgs = "not_present";
 QString vmware_pkgs = "not_present";
@@ -33,6 +34,7 @@ QString openconnect_pkgs = "not_present";
 QString openvpn_pkgs = "not_present";
 QString vpnc_pkgs = "not_present";
 
+QString overclock_pkgs = "not_present";
 QString custom1_pkgs = "not_present";
 
 RPiTC::RPiTC(QWidget *parent) :
@@ -347,8 +349,25 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get remove --purge -y network-manager-vpnc network-manager-vpnc-gnome\n";
         }
     }
-    //######################START CUSTOM SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
+    //######################START CUSTOM/OTHER SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
     if (true) {
+        // OVERCLOCK
+        if (ui->overclock_checkBox->isChecked() && overclock_pkgs == "not_present") { qDebug() << "I have to enable the overclock!";
+        bash_me = bash_me + "\n####### Enabling OVERCLOCK: \n"
+                            "sed -i '/^#arm_freq/{s/^#//}' /boot/config.txt\n"
+                            "sed -i '/^#sdram_freq/{s/^#//}' /boot/config.txt\n"
+                            "sed -i '/^#core_freq/{s/^#//}' /boot/config.txt\n"
+                            "sed -i '/^#over_voltage/{s/^#//}' /boot/config.txt\n"
+                            "sed -i '/^#initial_turbo/{s/^#//}' /boot/config.txt\n";
+        }
+        if (!ui->overclock_checkBox->isChecked() && overclock_pkgs == "installed") { qDebug() << "I have to remove the overclock!";
+        bash_me = bash_me + "\n####### Disabling OVERCLOCK: \n"
+                            "sed -i '/^arm_freq/{s/^/#/}' /boot/config.txt\n"
+                            "sed -i '/^sdram_freq/{s/^/#/}' /boot/config.txt\n"
+                            "sed -i '/^core_freq/{s/^/#/}' /boot/config.txt\n"
+                            "sed -i '/^over_voltage/{s/^/#/}' /boot/config.txt\n"
+                            "sed -i '/^initial_turbo/{s/^/#/}' /boot/config.txt\n";
+        }
         // CUSTOM
         if (ui->custom_checkBox->isChecked() && custom1_pkgs == "not_present") { qDebug() << "I have to install CUSTOM1!";
         bash_me = bash_me + "\n\n####### Customscript: \n" + ui->custom_textEdit->toPlainText();
@@ -536,8 +555,19 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "VPNc missing"; ui->vpnc_checkBox->setChecked(false); vpnc_pkgs = "not_present";
         }
     }
-    //######################START CUSTOM SERVICES CHECK######################ßß
+    //######################START CUSTOM/OTHER SERVICES CHECK######################ßß
     if (true) {
+        // OVERCLOCK
+        QProcess overclock_check;
+        overclock_check.start("cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq");
+        overclock_check.waitForFinished(-1);
+        QString overclock_stdout = overclock_check.readAllStandardOutput();
+        //just check if cpu max frequency is
+        if (overclock_stdout.toInt() > 900000) {
+            qDebug() << "OVERCLOCK enable"; ui->overclock_checkBox->setChecked(true); overclock_pkgs = "installed";
+        } else {
+            qDebug() << "OVERCLOCK disable"; ui->overclock_checkBox->setChecked(false); overclock_pkgs = "not_present";
+        }
         // CUSTOM1
         if (QFile(ui->customfile_lineEdit->text()).exists()) {
             qDebug() << "CUSTOM is installed"; ui->custom_checkBox->setChecked(true); custom1_pkgs = "installed";

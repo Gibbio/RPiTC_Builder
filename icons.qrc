@@ -30,5 +30,6 @@
         <file>icons/terminal_icon.png</file>
         <file>icons/spicy_icon.png</file>
         <file>icons/rpitc-builder-icon.png</file>
+        <file>icons/overclock_icon.png</file>
     </qresource>
 </RCC>

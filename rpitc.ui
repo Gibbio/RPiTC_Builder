@@ -488,7 +488,7 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>361</width>
+        <width>251</width>
         <height>21</height>
        </rect>
       </property>
@@ -563,6 +563,26 @@
         <width>291</width>
         <height>71</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="overclock_checkBox">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>20</y>
+        <width>251</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Overclock Enabled</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
