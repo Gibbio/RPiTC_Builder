@@ -105,7 +105,7 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### VMWARE HORIZON Install cmds:\n"
                             "apt-get install libudev1\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
-                            "wget http://dl.armtc.net/RPi-TC/packages/vmwh350.tar.gz -O /tmp/vmwh350.tar.gz\ntar xf /tmp/vmwh350.tar.gz -C /\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/vmwh350.tar.gz -O /tmp/vmwh350.tar.gz\ntar xf /tmp/vmwh350.tar.gz -C /tmp/\n/tmp/vmwh350\n"
                             "systemctl enable vmwareusbd\nsystemctl start vmwareusbd\n"
                             "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-horizon.desktop\n";
         }
