@@ -1,4 +1,4 @@
 # RPiTC_Builder
 RPiTC packages installer/remover
 
-prerequisite: libqt5widgets5
+prerequisite: libqt4-core libqt4-network
