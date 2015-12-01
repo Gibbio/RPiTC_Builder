@@ -193,7 +193,7 @@
        <item>
         <widget class="QCheckBox" name="dfreerdp_checkBox">
          <property name="text">
-          <string>dFreeRDP (RPi-TC repo)</string>
+          <string>dFreeRDP (RPi-TC build)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
