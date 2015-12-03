@@ -184,15 +184,14 @@ void RPiTC::on_pushButton_clicked()
         // DFREERDP
         if (ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "not_present") { qDebug() << "I have to install dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Install cmds:\n"
-                            "wget http://dl.armtc.net/RPi-TC/packages/dfreerdp -O /usr/bin/dfreerdp\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/dfreerdp -O /usr/bin/dfreerdp;chmod +x /usr/bin/dfreerdp\n"
                             "ln -s /opt/config/fb.modes /etc/fb.modes;ln -s /opt/config/directfbrc /etc/directfbrc\n"
                             "ln -s /opt/config/dFreeRDP.desktop /usr/share/applications/dFreeRDP.desktop\n"
                             "# Add dFreeRDP icon to docky menu:\n/opt/scripts/dockyadd.sh dFreeRDP.desktop\n";
         }
         if (!ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "installed") { qDebug() << "I have to remove dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Remove cmds:\n"
-                            "rm -fr /usr/bin/dfreerdp /etc/fb.modes /etc/directfbrc\n"
-                            "rm -fr /usr/share/applications/dFreeRDP.desktop\n"
+                            "rm -fr /usr/bin/dfreerdp /etc/fb.modes /etc/directfbrc /usr/share/applications/dFreeRDP.desktop\n"
                             "# Remove dFreeRDP icon from docky menu:\n/opt/scripts/dockyrm.sh dFreeRDP.desktop\n";
         }
     }
@@ -493,7 +492,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "xFreeRDP GIT missing"; ui->xfreerdpgit_checkBox->setChecked(false); xfreerdpgit_pkgs = "not_present";
         }
         // DFREERDP
-        if (QFile("/opt/dfreerdp/bin/dfreerdp").exists()) {
+        if (QFile("/usr/bin/dfreerdp").exists()) {
             qDebug() << "dFreeRDP is installed"; ui->dfreerdp_checkBox->setChecked(true); dfreerdp_pkgs = "installed";
         } else {
             qDebug() << "dFreeRDP missing"; ui->dfreerdp_checkBox->setChecked(false); dfreerdp_pkgs = "not_present";
