@@ -177,7 +177,6 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "installed") { qDebug() << "I have to remove xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Remove cmds:\n"
-                            "apt-get remove --purge -y libssl1.0.0\n"
                             "rm -fr /usr/share/applications/xFreeRDP_GIT.desktop /usr/bin/xfreerdp_git\n"
                             "# Remove xFreeRDP_GIT icon from docky menu:\n/opt/scripts/dockyrm.sh xFreeRDP_GIT.desktop\n";
         }
