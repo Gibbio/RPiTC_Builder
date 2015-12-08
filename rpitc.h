@@ -23,6 +23,8 @@ private slots:
 
     void on_searchfile_pushButton_clicked();
 
+    void on_ica_checkBox_toggled(bool checked);
+
 public:
     Ui::RPiTC *ui;
 };

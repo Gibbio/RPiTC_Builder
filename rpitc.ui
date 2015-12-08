@@ -28,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="maintcpkgs_tab">
      <attribute name="title">
@@ -39,7 +39,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>301</width>
+        <width>296</width>
         <height>224</height>
        </rect>
       </property>
@@ -129,6 +129,26 @@
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QCheckBox" name="icah264_checkBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>20</y>
+        <width>321</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>H.264 HW acceleration for RPi2 (beta)</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/ica_icon.png</normaloff>:/icons/ica_icon.png</iconset>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="rdppkgs_tab">
@@ -440,15 +460,93 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="custom_tab">
+    <widget class="QWidget" name="othercfg_tab">
      <attribute name="title">
-      <string>Other/Custom</string>
+      <string>Other Settings</string>
      </attribute>
-     <widget class="QLabel" name="custom_label">
+     <widget class="QWidget" name="verticalLayoutWidget_6">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>70</y>
+        <y>20</y>
+        <width>621</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QCheckBox" name="aptcache_checkBox">
+         <property name="text">
+          <string>Add pre/post apt-get commands</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/terminal_icon.png</normaloff>:/icons/terminal_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="overclock_checkBox">
+         <property name="text">
+          <string>Overclock the RPi2 board (safe options)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="update_checkBox">
+         <property name="text">
+          <string>Update RPiTC Builder (this will clean the packages/services procedure!)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/terminal_icon.png</normaloff>:/icons/terminal_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="custom_tab">
+     <attribute name="title">
+      <string>Cust.</string>
+     </attribute>
+     <widget class="QLabel" name="customcommand_label">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>391</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Custom command to execute:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="custom_label">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
         <width>551</width>
         <height>16</height>
        </rect>
@@ -457,57 +555,14 @@
        <string>Here you can add your custom Package/Service</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="custom_checkBox">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>220</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>My Custom package!</string>
-      </property>
-     </widget>
-     <widget class="Line" name="custom_line">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>50</y>
-        <width>621</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="aptcache_checkBox">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>251</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add pre/post apt-get commands</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons.qrc">
-        <normaloff>:/icons/terminal_icon.png</normaloff>:/icons/terminal_icon.png</iconset>
-      </property>
-      <property name="checked">
+     <widget class="QLineEdit" name="customfile_lineEdit">
+      <property name="enabled">
        <bool>true</bool>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="customfile_lineEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>120</y>
+        <y>80</y>
         <width>291</width>
         <height>23</height>
        </rect>
@@ -516,11 +571,43 @@
        <string>/usr/bin/lolfile</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="searchfile_pushButton">
+     <widget class="QTextEdit" name="custom_textEdit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>291</width>
+        <height>71</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="custom_checkBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>120</y>
+        <y>180</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>My Custom package!</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="searchfile_pushButton">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>80</y>
         <width>80</width>
         <height>23</height>
        </rect>
@@ -530,59 +617,19 @@
       </property>
      </widget>
      <widget class="QLabel" name="findfile_label">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>100</y>
+        <y>60</y>
         <width>391</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
        <string>Find the custom the file to check:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="customcommand_label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>150</y>
-        <width>391</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Custom command to execute:</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="custom_textEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>170</y>
-        <width>291</width>
-        <height>71</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="overclock_checkBox">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>20</y>
-        <width>251</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Overclock Enabled</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons.qrc">
-        <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>

@@ -7,6 +7,7 @@
 #include <QProcess>
 
 QString ica_pkgs = "not_present";
+QString icah264_pkgs = "not_present";
 QString vmware_pkgs = "not_present";
 QString nxc_pkgs = "not_present";
 QString thinlinc_pkgs = "not_present";
@@ -58,6 +59,7 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get update\n";
     }
     QString bash_me_filename = "/opt/bashme.sh";
+    ui->icah264_checkBox->setEnabled(false);
 
     //######################START MAIN CLIENTS INSTALL/REMOVE ROUTINES######################ßß
     if (true) {
@@ -73,6 +75,26 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### CITRIX RECEIVER Remove cmds:\n"
                             "apt-get remove --purge -y icaclient ctxusb\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n"
                             "# Remove ICA icon from docky menu:\n/opt/scripts/dockyrm.sh selfservice.desktop\n";
+        }
+        // ICA H.264 Acceleration:
+        if (ui->icah264_checkBox->isChecked() && icah264_pkgs == "not_present") { qDebug() << "I have to install ICA H.264!";
+        bash_me = bash_me + "\n####### ICA H.264 Accelerated for RPi2 Install cmds:\n"
+                            "#use JPEG Turbo lib:\n"
+                            "mv /opt/Citrix/ICAClient/lib/ctxjpeg_fb_8.so /opt/Citrix/ICAClient/lib/ctxjpeg_fb_8.so.DO_NOT_USE\n"
+                            "#new RPi2 accelerated H.264:\n"
+                            "mv /opt/Citrix/ICAClient/lib/ctxh264.so /opt/Citrix/ICAClient/lib/ctxh264.so.DO_NOT_USE\n"
+                            "cp /opt/libraries/ctxh264.so /opt/Citrix/ICAClient/lib/\n"
+                            "#Uncomment the Citrix framebuffer options in config.txt:\n"
+                            "sed -i '/^#framebuffer_depth=32/{s/^#//}' /boot/config.txt\nsed -i '/^#framebuffer_ignore_alpha=1/{s/^#//}' /boot/config.txt\n";
+        }
+        if (!ui->icah264_checkBox->isChecked() && icah264_pkgs == "installed") { qDebug() << "I have to remove ICA H.264!";
+        bash_me = bash_me + "\n####### ICA H.264 Accelerated for RPi2 Remove cmds:\n"
+                            "#Switch back to non-accelerated H.264 lib:\n"
+                            "mv /opt/Citrix/ICAClient/lib/ctxh264.so.DO_NOT_USE /opt/Citrix/ICAClient/lib/ctxh264.so\n"
+                            "#Switch back to standard libjpeg\n"
+                            "mv /opt/Citrix/ICAClient/lib/ctxjpeg_fb_8.so.DO_NOT_USE /opt/Citrix/ICAClient/lib/ctxjpeg_fb_8.so\n"
+                            "#Comment the Citrix framebuffer options in config.txt:\n"
+                            "sed -i '/^framebuffer_depth=32/{s/^/#/}' /boot/config.txt\nsed -i '/^framebuffer_ignore_alpha=1/{s/^/#/}' /boot/config.txt\n";
         }
         // PARALLELS 2X:
         if (ui->twox_checkBox->isChecked() && twox_pkgs == "not_present") { qDebug() << "I have to install Parallel 2X!";
@@ -368,6 +390,18 @@ void RPiTC::on_pushButton_clicked()
                             "sed -i '/^over_voltage/{s/^/#/}' /boot/config.txt\n"
                             "sed -i '/^initial_turbo/{s/^/#/}' /boot/config.txt\n";
         }
+        // UPDATE RPITC BUILDER
+        if (ui->update_checkBox->isChecked()) { qDebug() << "UPDATE RPITC BUILDER!!";
+            //clean bashme.sh and apply the update script!
+            bash_me = "########### UPDATE RPITC BUILDER ###########\n"
+                      "#Close the RPiTC before update:\n"
+                      "killall -9 RPiTC\n"
+                      "#get lastest version from GIT:\n"
+                      "wget https://raw.githubusercontent.com/Gibbio/RPiTC_Builder/master/RPiTC -O /opt/binaries/RPiTC\n"
+                      "#restart RPiTC and close this xterm window:\n"
+                      "/opt/binaries/RPiTC &\n"
+                      "exit;exit\n";
+        }
         // CUSTOM
         if (ui->custom_checkBox->isChecked() && custom1_pkgs == "not_present") { qDebug() << "I have to install CUSTOM1!";
         bash_me = bash_me + "\n\n####### Customscript: \n" + ui->custom_textEdit->toPlainText();
@@ -404,8 +438,16 @@ void RPiTC::on_rescan_pushButton_clicked()
         // CITRIX RECEIVER:
         if (QFile("/opt/Citrix/ICAClient/wfica").exists()) {
             qDebug() << "Citrix Receiver is installed"; ui->ica_checkBox->setChecked(true); ica_pkgs = "installed";
+            ui->icah264_checkBox->setEnabled(true);
         } else {
             qDebug() << "Citrix Receiver missing"; ui->ica_checkBox->setChecked(false); ica_pkgs = "not_present";
+            ui->icah264_checkBox->setEnabled(false);
+        }
+        // ICA H.264:
+        if (QFile("/opt/Citrix/ICAClient/lib/ctxh264.so.DO_NOT_USE").exists()) {
+            qDebug() << "ICA H.264 is installed"; ui->icah264_checkBox->setChecked(true); icah264_pkgs = "installed";
+        } else {
+            qDebug() << "ICA H.264 missing"; ui->icah264_checkBox->setChecked(false); icah264_pkgs = "not_present";
         }
         // VMWARE HORIZON:
         if (QFile("/usr/bin/vmware-view").exists()) {
@@ -583,4 +625,14 @@ void RPiTC::on_searchfile_pushButton_clicked()
     "",
     tr("File to check (*.*)"));
     ui->customfile_lineEdit->setText(fileName);
+}
+
+void RPiTC::on_ica_checkBox_toggled(bool checked)
+{
+    if (checked) {
+        ui->icah264_checkBox->setEnabled(true);
+    } else {
+        ui->icah264_checkBox->setEnabled(false);
+        ui->icah264_checkBox->setChecked(false);
+    }
 }
