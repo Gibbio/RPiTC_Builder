@@ -34,6 +34,16 @@ QString virtualhere_pkgs = "not_present";
 QString openconnect_pkgs = "not_present";
 QString openvpn_pkgs = "not_present";
 QString vpnc_pkgs = "not_present";
+QString bluez_pkgs = "not_present";
+
+QString bluez_firmware_pkgs = "not_present";
+QString ath_firmware_pkgs = "not_present";
+QString bcm_firmware_pkgs = "not_present";
+QString intel_firmware_pkgs = "not_present";
+QString rtl_firmware_pkgs = "not_present";
+QString zd_firmware_pkgs = "not_present";
+QString ng_firmware_pkgs = "not_present";
+QString b43_firmware_pkgs = "not_present";
 
 QString overclock_pkgs = "not_present";
 QString custom1_pkgs = "not_present";
@@ -370,6 +380,15 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### VPNC Remove cmds:\n"
                             "apt-get remove --purge -y network-manager-vpnc network-manager-vpnc-gnome\n";
         }
+        // BLUEZ
+        if (ui->bluez_checkBox->isChecked() && bluez_pkgs == "not_present") { qDebug() << "I have to install BLUEZ!";
+        bash_me = bash_me + "\n####### BLUEZ Install cmds:\n"
+                            "apt-get install -y bluez bluez-cups bluez-tools\n";
+        }
+        if (!ui->bluez_checkBox->isChecked() && bluez_pkgs == "installed") { qDebug() << "I have to remove BLUEZ!";
+        bash_me = bash_me + "\n####### BLUEZ Remove cmds:\n"
+                            "apt-get remove --purge -y bluez bluez-cups bluez-tools\n";
+        }
     }
     //######################START CUSTOM/OTHER SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
     if (true) {
@@ -408,6 +427,78 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->custom_checkBox->isChecked() && custom1_pkgs == "installed") { qDebug() << "I have to remove CUSTOM1!";
         bash_me = bash_me + "\n\n####### Customscript: \n" + ui->custom_textEdit->toPlainText();
+        }
+        // BLUEZ-FIRMWARE
+        if (ui->bluez_firmware_checkBox->isChecked() && bluez_firmware_pkgs == "not_present") { qDebug() << "I have to install BLUEZ-FIRMWARE!";
+        bash_me = bash_me + "\n####### BLUEZ-FIRMWARE Install cmds:\n"
+                            "apt-get install -y bluez-firmware\n";
+        }
+        if (!ui->bluez_firmware_checkBox->isChecked() && bluez_firmware_pkgs == "installed") { qDebug() << "I have to remove BLUEZ-FIRMWARE!";
+        bash_me = bash_me + "\n####### BLUEZ-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y bluez-firmware\n";
+        }
+        // ATHEROS-FIRMWARE
+        if (ui->ath_firmware_checkBox->isChecked() && ath_firmware_pkgs == "not_present") { qDebug() << "I have to install ATHEROS-FIRMWARE!";
+        bash_me = bash_me + "\n####### ATHEROS-FIRMWARE Install cmds:\n"
+                            "apt-get install -y firmware-atheros\n";
+        }
+        if (!ui->ath_firmware_checkBox->isChecked() && ath_firmware_pkgs == "installed") { qDebug() << "I have to remove ATHEROS-FIRMWARE!";
+        bash_me = bash_me + "\n####### ATHEROS-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y firmware-atheros\n";
+        }
+        // BCM-FIRMWARE
+        if (ui->bcm_firmware_checkBox->isChecked() && bcm_firmware_pkgs == "not_present") { qDebug() << "I have to install BCM-FIRMWARE!";
+        bash_me = bash_me + "\n####### BCM-FIRMWARE Install cmds:\n"
+                            "apt-get install -y firmware-brcm80211\n";
+        }
+        if (!ui->bcm_firmware_checkBox->isChecked() && bcm_firmware_pkgs == "installed") { qDebug() << "I have to remove BCM-FIRMWARE!";
+        bash_me = bash_me + "\n####### BCM-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y firmware-brcm80211\n";
+        }
+        // INTEL-FIRMWARE
+        if (ui->intel_firmware_checkBox->isChecked() && intel_firmware_pkgs == "not_present") { qDebug() << "I have to install INTEL-FIRMWARE!";
+        bash_me = bash_me + "\n####### INTEL-FIRMWARE Install cmds:\n"
+                            "apt-get install -y firmware-ipw2x00\n";
+        }
+        if (!ui->intel_firmware_checkBox->isChecked() && intel_firmware_pkgs == "installed") { qDebug() << "I have to remove INTEL-FIRMWARE!";
+        bash_me = bash_me + "\n####### INTEL-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y firmware-ipw2x00\n";
+        }
+        // REALTEK-FIRMWARE
+        if (ui->rtl_firmware_checkBox->isChecked() && rtl_firmware_pkgs == "not_present") { qDebug() << "I have to install REALTEK-FIRMWARE!";
+        bash_me = bash_me + "\n####### REALTEK-FIRMWARE Install cmds:\n"
+                            "apt-get install -y firmware-realtek\n";
+        }
+        if (!ui->rtl_firmware_checkBox->isChecked() && rtl_firmware_pkgs == "installed") { qDebug() << "I have to remove REALTEK-FIRMWARE!";
+        bash_me = bash_me + "\n####### REALTEK-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y firmware-realtek\n";
+        }
+        // ZD-FIRMWARE
+        if (ui->zd_firmware_checkBox->isChecked() && zd_firmware_pkgs == "not_present") { qDebug() << "I have to install ZD-FIRMWARE!";
+        bash_me = bash_me + "\n####### ZD-FIRMWARE Install cmds:\n"
+                            "apt-get install -y firmware-zd1211\n";
+        }
+        if (!ui->zd_firmware_checkBox->isChecked() && zd_firmware_pkgs == "installed") { qDebug() << "I have to remove ZD-FIRMWARE!";
+        bash_me = bash_me + "\n####### ZD-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y firmware-zd1211\n";
+        }
+        // NG-FIRMWARE
+        if (ui->ng_firmware_checkBox->isChecked() && ng_firmware_pkgs == "not_present") { qDebug() << "I have to install NG-FIRMWARE!";
+        bash_me = bash_me + "\n####### NG-FIRMWARE Install cmds:\n"
+                            "apt-get install -y linux-wlan-ng-firmware\n";
+        }
+        if (!ui->ng_firmware_checkBox->isChecked() && ng_firmware_pkgs == "installed") { qDebug() << "I have to remove NG-FIRMWARE!";
+        bash_me = bash_me + "\n####### NG-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y linux-wlan-ng-firmware\n";
+        }
+        // B43-FIRMWARE
+        if (ui->b43_firmware_checkBox->isChecked() && b43_firmware_pkgs == "not_present") { qDebug() << "I have to install B43-FIRMWARE!";
+        bash_me = bash_me + "\n####### B43-FIRMWARE Install cmds:\n"
+                            "apt-get install -y firmware-b43-installer\n";
+        }
+        if (!ui->b43_firmware_checkBox->isChecked() && b43_firmware_pkgs == "installed") { qDebug() << "I have to remove B43-FIRMWARE!";
+        bash_me = bash_me + "\n####### NB43G-FIRMWARE Remove cmds:\n"
+                            "apt-get remove --purge -y firmware-b43-installer\n";
         }
     }
 
@@ -596,6 +687,12 @@ void RPiTC::on_rescan_pushButton_clicked()
         } else {
             qDebug() << "VPNc missing"; ui->vpnc_checkBox->setChecked(false); vpnc_pkgs = "not_present";
         }
+        // BLUEZ
+        if (QFile("/usr/bin/bluetoothctl").exists()) {
+            qDebug() << "BLUEZ is installed"; ui->bluez_checkBox->setChecked(true); bluez_pkgs = "installed";
+        } else {
+            qDebug() << "BLUEZ missing"; ui->bluez_checkBox->setChecked(false); bluez_pkgs = "not_present";
+        }
     }
     //######################START CUSTOM/OTHER SERVICES CHECK######################ßß
     if (true) {
@@ -615,6 +712,48 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "CUSTOM is installed"; ui->custom_checkBox->setChecked(true); custom1_pkgs = "installed";
         } else {
             qDebug() << "CUSTOM missing"; ui->custom_checkBox->setChecked(false); custom1_pkgs = "not_present";
+        }
+        // BLUEZ-FIRMWARE
+        if (QFile("/lib/firmware/BCM2033-FW.bin").exists()) {
+            qDebug() << "BLUEZ-FIRMWARE is installed"; ui->bluez_firmware_checkBox->setChecked(true); bluez_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "BLUEZ-FIRMWARE missing"; ui->bluez_firmware_checkBox->setChecked(false); bluez_firmware_pkgs = "not_present";
+        }
+        // ATHEROS-FIRMWARE
+        if (QFile("/lib/firmware/ar9271.fw").exists()) {
+            qDebug() << "ATHEROS-FIRMWARE is installed"; ui->ath_firmware_checkBox->setChecked(true); ath_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "ATHEROS-FIRMWARE missing"; ui->ath_firmware_checkBox->setChecked(false); ath_firmware_pkgs = "not_present";
+        }
+        // BCM-FIRMWARE
+        if (QFile("/lib/firmware/brcm/brcmfmac43569.bin").exists()) {
+            qDebug() << "BCM-FIRMWARE is installed"; ui->bcm_firmware_checkBox->setChecked(true); bcm_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "BCM-FIRMWARE missing"; ui->bcm_firmware_checkBox->setChecked(false); bcm_firmware_pkgs = "not_present";
+        }
+        // INTEL-FIRMWARE
+        if (QFile("/lib/firmware/ipw2200-bss.fw").exists()) {
+            qDebug() << "INTEL-FIRMWARE is installed"; ui->intel_firmware_checkBox->setChecked(true); intel_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "INTEL-FIRMWARE missing"; ui->intel_firmware_checkBox->setChecked(false); intel_firmware_pkgs = "not_present";
+        }
+        // REALTEK-FIRMWARE
+        if (QFile("/lib/firmware/RTL8192E/boot.img").exists()) {
+            qDebug() << "REALTEK-FIRMWARE is installed"; ui->rtl_firmware_checkBox->setChecked(true); rtl_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "REALTEK-FIRMWARE missing"; ui->rtl_firmware_checkBox->setChecked(false); rtl_firmware_pkgs = "not_present";
+        }
+        // ZD-FIRMWARE
+        if (QFile("/lib/firmware/zd1211/zd1211_ur").exists()) {
+            qDebug() << "ZD-FIRMWARE is installed"; ui->zd_firmware_checkBox->setChecked(true); zd_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "ZD-FIRMWARE missing"; ui->zd_firmware_checkBox->setChecked(false); zd_firmware_pkgs = "not_present";
+        }
+        // B43-FIRMWARE
+        if (QFile("/lib/firmware/zd1211/zd1211_ur").exists()) {
+            qDebug() << "B43-FIRMWARE is installed"; ui->b43_firmware_checkBox->setChecked(true); b43_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "B43-FIRMWARE missing"; ui->b43_firmware_checkBox->setChecked(false); b43_firmware_pkgs = "not_present";
         }
     }
 }

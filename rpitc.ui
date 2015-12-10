@@ -28,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="maintcpkgs_tab">
      <attribute name="title">
@@ -317,8 +317,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>336</width>
-        <height>189</height>
+        <width>306</width>
+        <height>149</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="os1_verticalLayout">
@@ -396,8 +396,8 @@
        <rect>
         <x>330</x>
         <y>10</y>
-        <width>320</width>
-        <height>154</height>
+        <width>293</width>
+        <height>149</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="os2_verticalLayout">
@@ -457,6 +457,17 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QCheckBox" name="bluez_checkBox">
+         <property name="text">
+          <string>Bluetooth support (Debian repo)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/bluez_icon.png</normaloff>:/icons/bluez_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -467,13 +478,13 @@
      <widget class="QWidget" name="verticalLayoutWidget_6">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>621</width>
-        <height>161</height>
+        <x>340</x>
+        <y>10</y>
+        <width>296</width>
+        <height>77</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="othercfg_verticalLayout">
        <item>
         <widget class="QCheckBox" name="aptcache_checkBox">
          <property name="text">
@@ -505,7 +516,7 @@
        <item>
         <widget class="QCheckBox" name="update_checkBox">
          <property name="text">
-          <string>Update RPiTC Builder (this will clean the packages/services procedure!)</string>
+          <string>Update RPiTC Builder</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -518,6 +529,141 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>10</y>
+        <width>332</width>
+        <height>232</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="firmware_verticalLayout">
+       <item>
+        <widget class="QLabel" name="firmware_label">
+         <property name="text">
+          <string>Devices firmware (wlan etc) with RPiTC Builder:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="bluez_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for Bluetooth devices (Broadcom)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="ath_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for Atheros wireless cards</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="bcm_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for Broadcom 802.11 wireless cards</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="intel_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for Intel Pro Wireless</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="rtl_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for Realtek wired/wifi/BT adapters</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="zd_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for the zd1211rw wireless driver</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="ng_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for linux-wlan-ng driver</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="b43_firmware_checkBox">
+         <property name="text">
+          <string>Firmware for Broadcom 43xx wireless cards</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <zorder>verticalLayoutWidget_6</zorder>
+     <zorder>verticalLayoutWidget_7</zorder>
+     <zorder>firmware_label</zorder>
+     <zorder>firmware_label</zorder>
     </widget>
     <widget class="QWidget" name="custom_tab">
      <attribute name="title">
