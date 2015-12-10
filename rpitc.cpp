@@ -497,7 +497,7 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get install -y firmware-b43-installer\n";
         }
         if (!ui->b43_firmware_checkBox->isChecked() && b43_firmware_pkgs == "installed") { qDebug() << "I have to remove B43-FIRMWARE!";
-        bash_me = bash_me + "\n####### NB43G-FIRMWARE Remove cmds:\n"
+        bash_me = bash_me + "\n####### B43-FIRMWARE Remove cmds:\n"
                             "apt-get remove --purge -y firmware-b43-installer\n";
         }
     }
@@ -743,6 +743,12 @@ void RPiTC::on_rescan_pushButton_clicked()
         } else {
             qDebug() << "REALTEK-FIRMWARE missing"; ui->rtl_firmware_checkBox->setChecked(false); rtl_firmware_pkgs = "not_present";
         }
+        // NG-FIRMWARE
+        if (QFile("/usr/bin/linux-wlan-ng-build-firmware-deb").exists()) {
+            qDebug() << "NG-FIRMWARE is installed"; ui->ng_firmware_checkBox->setChecked(true); ng_firmware_pkgs = "installed";
+        } else {
+            qDebug() << "NG-FIRMWARE missing"; ui->ng_firmware_checkBox->setChecked(false); ng_firmware_pkgs = "not_present";
+        }
         // ZD-FIRMWARE
         if (QFile("/lib/firmware/zd1211/zd1211_ur").exists()) {
             qDebug() << "ZD-FIRMWARE is installed"; ui->zd_firmware_checkBox->setChecked(true); zd_firmware_pkgs = "installed";
@@ -750,7 +756,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "ZD-FIRMWARE missing"; ui->zd_firmware_checkBox->setChecked(false); zd_firmware_pkgs = "not_present";
         }
         // B43-FIRMWARE
-        if (QFile("/lib/firmware/zd1211/zd1211_ur").exists()) {
+        if (QFile("/lib/firmware/b43/pcm5.fw").exists()) {
             qDebug() << "B43-FIRMWARE is installed"; ui->b43_firmware_checkBox->setChecked(true); b43_firmware_pkgs = "installed";
         } else {
             qDebug() << "B43-FIRMWARE missing"; ui->b43_firmware_checkBox->setChecked(false); b43_firmware_pkgs = "not_present";
