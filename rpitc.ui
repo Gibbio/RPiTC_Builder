@@ -39,8 +39,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>296</width>
-        <height>224</height>
+        <width>271</width>
+        <height>176</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="mainpkgs_verticalLayout">
@@ -136,8 +136,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>20</y>
+        <x>300</x>
+        <y>10</y>
         <width>321</width>
         <height>31</height>
        </rect>
@@ -160,8 +160,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>246</width>
-        <height>154</height>
+        <width>220</width>
+        <height>122</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="rdp_verticalLayout">
@@ -233,8 +233,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>304</width>
-        <height>189</height>
+        <width>297</width>
+        <height>176</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="otherpkgs_verticalLayout">
@@ -286,11 +286,22 @@
        <item>
         <widget class="QCheckBox" name="tn5250_checkBox">
          <property name="text">
-          <string>TN5250 (RPi-TC repo)</string>
+          <string>TN5250 (RPi-TC repo, command line)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/icons/tn5250_icon.png</normaloff>:/icons/tn5250_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="tn5250j_checkBox">
+         <property name="text">
+          <string>TN5250j (RPi-TC repo, Java Needed!!)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/tn5250j_icon.png</normaloff>:/icons/tn5250j_icon.png</iconset>
          </property>
         </widget>
        </item>
@@ -302,6 +313,52 @@
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/icons/xephyr_icon.png</normaloff>:/icons/xephyr_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>10</y>
+        <width>184</width>
+        <height>68</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="java_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="jdk7_checkBox">
+         <property name="text">
+          <string>Oracle JDK 7 for RPi</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/Java_icon.png</normaloff>:/icons/Java_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="jdk8_checkBox">
+         <property name="text">
+          <string>Oracle JDK 8 for RPi</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/Java_icon.png</normaloff>:/icons/Java_icon.png</iconset>
          </property>
         </widget>
        </item>
@@ -535,17 +592,10 @@
         <x>9</x>
         <y>10</y>
         <width>332</width>
-        <height>232</height>
+        <height>212</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="firmware_verticalLayout">
-       <item>
-        <widget class="QLabel" name="firmware_label">
-         <property name="text">
-          <string>Devices firmware (wlan etc) with RPiTC Builder:</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="QCheckBox" name="bluez_firmware_checkBox">
          <property name="text">
@@ -660,10 +710,6 @@
        </item>
       </layout>
      </widget>
-     <zorder>verticalLayoutWidget_6</zorder>
-     <zorder>verticalLayoutWidget_7</zorder>
-     <zorder>firmware_label</zorder>
-     <zorder>firmware_label</zorder>
     </widget>
     <widget class="QWidget" name="custom_tab">
      <attribute name="title">

@@ -17,8 +17,11 @@ QString browser_pkgs = "not_present";
 QString x2go_pkgs = "not_present";
 QString spice_pkgs = "not_present";
 QString tn5250_pkgs = "not_present";
+QString tn5250j_pkgs = "not_present";
 QString x3270_pkgs = "not_present";
 QString xephyr_pkgs = "not_present";
+QString jdk7_pkgs = "not_present";
+QString jdk8_pkgs = "not_present";
 
 QString rdesktop_pkgs = "not_present";
 QString xfreerdp_pkgs = "not_present";
@@ -266,6 +269,19 @@ void RPiTC::on_pushButton_clicked()
                             "rm -fr /usr/share/applications/tn5250.desktop\n"
                             "# Remove TN5250 icon from docky menu:\n/opt/scripts/dockyrm.sh tn5250.desktop\n";
         }
+        // TN5250J
+        if (ui->tn5250j_checkBox->isChecked() && tn5250j_pkgs == "not_present") { qDebug() << "I have to install TN5250J!";
+        bash_me = bash_me + "\n####### TN5250J Install cmds:\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/tn5250j-0.7.6-full-bin.zip -O /opt/tn5250j-0.7.6-full-bin.zip\n"
+                            "unzip /opt/tn5250j-0.7.6-full-bin.zip -d /opt/\nrm -fr /opt/tn5250j-0.7.6-full-bin.zip\n"
+                            "ln -s /opt/config/tn5250j.desktop /usr/share/applications/tn5250j.desktop\n"
+                            "# Add TN5250J icon to docky menu:\n/opt/scripts/dockyadd.sh tn5250j.desktop\n";
+        }
+        if (!ui->tn5250j_checkBox->isChecked() && tn5250j_pkgs == "installed") { qDebug() << "I have to remove TN5250J!";
+        bash_me = bash_me + "\n####### TN5250J Remove cmds:\n"
+                            "rm -fr /opt/tn5250j-0.7.6\nrm -fr /usr/share/applications/tn5250j.desktop\n"
+                            "# Remove TN5250 icon from docky menu:\n/opt/scripts/dockyrm.sh tn5250j.desktop\n";
+        }
         // x3270
         if (ui->x3270_checkBox->isChecked() && x3270_pkgs == "not_present") { qDebug() << "I have to install x3270!";
         bash_me = bash_me + "\n####### x3270 Install cmds:\n"
@@ -291,6 +307,28 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get remove --purge -y xserver-xephyr\n"
                             "rm -fr /usr/share/applications/Xephyr.desktop\n"
                             "# Remove Xephyr icon from docky menu:\n/opt/scripts/dockyrm.sh Xephyr.desktop\n";
+        }
+        // ORACLE-JAVA7-JDK
+        if (ui->jdk7_checkBox->isChecked() && jdk7_pkgs == "not_present") { qDebug() << "I have to install ORACLE-JAVA7-JDK!";
+        bash_me = bash_me + "\n####### ORACLE-JAVA7-JDK Install cmds:\n"
+                            "mkdir -p /usr/share/man/man1/\n"
+                            "apt-get install -y oracle-java7-jdk\n";
+        }
+        if (!ui->jdk7_checkBox->isChecked() && jdk7_pkgs == "installed") { qDebug() << "I have to remove ORACLE-JAVA7-JDK!";
+        bash_me = bash_me + "\n####### ORACLE-JAVA7-JDK Remove cmds:\n"
+                            "apt-get remove --purge -y oracle-java7-jdk\n"
+                            "rm -fr /usr/share/man/man1/\n";
+        }
+        // ORACLE-JAVA8-JDK
+        if (ui->jdk8_checkBox->isChecked() && jdk8_pkgs == "not_present") { qDebug() << "I have to install ORACLE-JAVA8-JDK!";
+        bash_me = bash_me + "\n####### ORACLE-JAVA8-JDK Install cmds:\n"
+                            "mkdir -p /usr/share/man/man1/\n"
+                            "apt-get install -y oracle-java8-jdk\n";
+        }
+        if (!ui->jdk8_checkBox->isChecked() && jdk8_pkgs == "installed") { qDebug() << "I have to remove ORACLE-JAVA8-JDK!";
+        bash_me = bash_me + "\n####### ORACLE-JAVA8-JDK Remove cmds:\n"
+                            "apt-get remove --purge -y oracle-java8-jdk\n"
+                            "rm -fr /usr/share/man/man1/\n";
         }
     }
     //######################START OS SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
@@ -591,6 +629,12 @@ void RPiTC::on_rescan_pushButton_clicked()
         } else {
             qDebug() << "TN5250 missing"; ui->tn5250_checkBox->setChecked(false); tn5250_pkgs = "not_present";
         }
+        // TN5250J
+        if (QFile("/opt/tn5250j-0.7.6/tn5250j.jar").exists()) {
+            qDebug() << "TN5250J is installed"; ui->tn5250j_checkBox->setChecked(true); tn5250j_pkgs = "installed";
+        } else {
+            qDebug() << "TN5250J missing"; ui->tn5250j_checkBox->setChecked(false); tn5250j_pkgs = "not_present";
+        }
         // x3270
         if (QFile("/usr/bin/x3270").exists()) {
             qDebug() << "x3270 is installed"; ui->x3270_checkBox->setChecked(true); x3270_pkgs = "installed";
@@ -602,6 +646,18 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "Xephyr is installed"; ui->xephyr_checkBox->setChecked(true); xephyr_pkgs = "installed";
         } else {
             qDebug() << "Xephyr missing"; ui->xephyr_checkBox->setChecked(false); xephyr_pkgs = "not_present";
+        }
+        // ORACLE-JAVA7-JDK
+        if (QFile("/usr/lib/jvm/jdk-7-oracle-armhf/debian/info").exists()) {
+            qDebug() << "ORACLE-JAVA7-JDK is installed"; ui->jdk7_checkBox->setChecked(true); jdk7_pkgs = "installed";
+        } else {
+            qDebug() << "ORACLE-JAVA7-JDK missing"; ui->jdk7_checkBox->setChecked(false); jdk7_pkgs = "not_present";
+        }
+        // ORACLE-JAVA8-JDK
+        if (QFile("/usr/lib/jvm/jdk-8-oracle-armhf/debian/info").exists()) {
+            qDebug() << "ORACLE-JAVA8-JDK is installed"; ui->jdk8_checkBox->setChecked(true); jdk8_pkgs = "installed";
+        } else {
+            qDebug() << "ORACLE-JAVA8-JDK missing"; ui->jdk8_checkBox->setChecked(false); jdk8_pkgs = "not_present";
         }
     }
     //######################START RDP CLIENTS CHECK######################ßß
