@@ -82,6 +82,16 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get install -y icaclient ctxusb libcurl4-gnutls-dev\nsystemctl enable ctxusbd\n"
                             "ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/\n"
                             "c_rehash /opt/Citrix/ICAClient/keystore/cacerts/\n"
+                            "#seem that eula.txt is missing from some folder... This will stop ICA client 13.3 from starting, lol\n"
+                            "cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/\n"
+                            "cp /opt/Citrix/ICAClient/nls/de.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/de/\n"
+                            "cp /opt/Citrix/ICAClient/nls/ru.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/ru/\n"
+                            "cp /opt/Citrix/ICAClient/nls/es.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/es/\n"
+                            "cp /opt/Citrix/ICAClient/nls/ja.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/ja/\n"
+                            "cp /opt/Citrix/ICAClient/nls/fr.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/fr/\n"
+                            "cp /opt/Citrix/ICAClient/nls/zh_HANS.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/zh_CN/\n"
+                            "cp /opt/Citrix/ICAClient/nls/zh_HANS.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/zh_SN/\n"
+                            "cp /opt/Citrix/ICAClient/nls/zh_HANS.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/zh_HANS/\n"
                             "# Add ICA icon to docky menu:\n/opt/scripts/dockyadd.sh selfservice.desktop\n";
         }
         if (!ui->ica_checkBox->isChecked() && ica_pkgs == "installed") { qDebug() << "I have to remove Citrix Receiver!";
@@ -138,7 +148,7 @@ void RPiTC::on_pushButton_clicked()
         // VMWARE HORIZON
         if (ui->vmware_checkBox->isChecked() && vmware_pkgs == "not_present") { qDebug() << "I have to install VMWare Horizon!";
         bash_me = bash_me + "\n####### VMWARE HORIZON Install cmds:\n"
-                            "apt-get install libudev1 libXss1\n"
+                            "apt-get install libudev1 libxss1\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/vmwh350.tar.gz -O /tmp/vmwh350.tar.gz\ntar xf /tmp/vmwh350.tar.gz -C /tmp/\n/tmp/vmwh350\n"
                             "systemctl enable vmwareusbd\nsystemctl start vmwareusbd\n"
