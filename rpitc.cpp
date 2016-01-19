@@ -96,7 +96,7 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->ica_checkBox->isChecked() && ica_pkgs == "installed") { qDebug() << "I have to remove Citrix Receiver!";
         bash_me = bash_me + "\n####### CITRIX RECEIVER Remove cmds:\n"
-                            "apt-get remove --purge -y icaclient ctxusb\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n"
+                            "apt-get remove --purge -y icaclient ctxusb libcurl4-gnutls-dev\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n"
                             "# Remove ICA icon from docky menu:\n/opt/scripts/dockyrm.sh selfservice.desktop\n";
         }
         // ICA H.264 Acceleration:
