@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
-    <height>330</height>
+    <width>733</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RPiTC Builder (beta v0.11)</string>
+   <string>RPiTC Builder (beta v0.98)</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -23,7 +23,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>651</width>
+      <width>731</width>
       <height>281</height>
      </rect>
     </property>
@@ -39,7 +39,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>290</width>
+        <width>296</width>
         <height>224</height>
        </rect>
       </property>
@@ -76,7 +76,7 @@
        <item>
         <widget class="QCheckBox" name="vmware_checkBox">
          <property name="text">
-          <string>VMWare Horizon 3.5.0</string>
+          <string>VMWare Horizon 4.1</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -87,7 +87,7 @@
        <item>
         <widget class="QCheckBox" name="nomachine_checkBox">
          <property name="text">
-          <string>NoMachine NX 5.0.47</string>
+          <string>NoMachine NX 5.1.26</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -109,7 +109,7 @@
        <item>
         <widget class="QCheckBox" name="twox_checkBox">
          <property name="text">
-          <string>Parallels 2X 12.1</string>
+          <string>Parallels 15.0</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -136,8 +136,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>10</y>
+        <x>310</x>
+        <y>20</y>
         <width>321</width>
         <height>31</height>
        </rect>
@@ -160,7 +160,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>240</width>
+        <width>246</width>
         <height>154</height>
        </rect>
       </property>
@@ -233,7 +233,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>320</width>
+        <width>335</width>
         <height>224</height>
        </rect>
       </property>
@@ -264,7 +264,7 @@
        <item>
         <widget class="QCheckBox" name="spice_checkBox">
          <property name="text">
-          <string>SPICE Client (RPi-TC/Debian repo)</string>
+          <string>SPICE Client  3.1 (RPi-TC Package)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -323,7 +323,7 @@
        <rect>
         <x>350</x>
         <y>10</y>
-        <width>204</width>
+        <width>213</width>
         <height>84</height>
        </rect>
       </property>
@@ -374,7 +374,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>329</width>
+        <width>336</width>
         <height>189</height>
        </rect>
       </property>
@@ -427,7 +427,7 @@
        <item>
         <widget class="QCheckBox" name="conky_checkBox">
          <property name="text">
-          <string>Conky system monitor (RPi-TC repo)</string>
+          <string>Conky system monitor (Debian repo)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -451,9 +451,9 @@
      <widget class="QWidget" name="verticalLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>350</x>
         <y>10</y>
-        <width>311</width>
+        <width>320</width>
         <height>189</height>
        </rect>
       </property>
@@ -535,13 +535,53 @@
      <widget class="QWidget" name="verticalLayoutWidget_6">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>380</x>
         <y>10</y>
-        <width>316</width>
-        <height>101</height>
+        <width>332</width>
+        <height>154</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="othercfg_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="ng_firmware_checkBox">
+         <property name="text">
+          <string>FW for linux-wlan-ng driver</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="rtl_firmware_checkBox">
+         <property name="text">
+          <string>FW for Realtek wired/wifi/BT adapters</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QCheckBox" name="aptcache_checkBox">
          <property name="text">
@@ -550,20 +590,6 @@
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/icons/terminal_icon.png</normaloff>:/icons/terminal_icon.png</iconset>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="overclock_checkBox">
-         <property name="text">
-          <string>Overclock the RPi2 board (safe options)</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
          </property>
          <property name="checked">
           <bool>true</bool>
@@ -591,15 +617,27 @@
        <rect>
         <x>9</x>
         <y>10</y>
-        <width>355</width>
-        <height>276</height>
+        <width>372</width>
+        <height>224</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="firmware_verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
        <item>
         <widget class="QCheckBox" name="bluez_firmware_checkBox">
          <property name="text">
-          <string>Firmware for Bluetooth devices (Broadcom)</string>
+          <string>FW for Bluetooth devices (Broadcom)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -613,7 +651,7 @@
        <item>
         <widget class="QCheckBox" name="ath_firmware_checkBox">
          <property name="text">
-          <string>Firmware for Atheros wireless cards</string>
+          <string>FW for Atheros wireless cards</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -627,7 +665,7 @@
        <item>
         <widget class="QCheckBox" name="bcm_firmware_checkBox">
          <property name="text">
-          <string>Firmware for Broadcom 802.11 wireless cards</string>
+          <string>FW for Broadcom 802.11 wireless cards</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -641,21 +679,7 @@
        <item>
         <widget class="QCheckBox" name="intel_firmware_checkBox">
          <property name="text">
-          <string>Firmware for Intel Pro Wireless</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="rtl_firmware_checkBox">
-         <property name="text">
-          <string>Firmware for Realtek wired/wifi/BT adapters</string>
+          <string>FW for Intel Pro Wireless</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -669,21 +693,7 @@
        <item>
         <widget class="QCheckBox" name="zd_firmware_checkBox">
          <property name="text">
-          <string>Firmware for the zd1211rw wireless driver</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/icons/firmware_icon.png</normaloff>:/icons/firmware_icon.png</iconset>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="ng_firmware_checkBox">
-         <property name="text">
-          <string>Firmware for linux-wlan-ng driver</string>
+          <string>FW for the zd1211rw wireless driver</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -705,6 +715,77 @@
          </property>
          <property name="checked">
           <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="rpi3_tab">
+     <attribute name="title">
+      <string>Hardware</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>391</width>
+        <height>119</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="overclock_checkBox">
+         <property name="text">
+          <string>Overclock the RPi2/3 board (safe options)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="bluetooth_checkBox">
+         <property name="text">
+          <string>Enable integrated Bluetooth (Raspberry 3 only)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="wireless_checkBox">
+         <property name="text">
+          <string>Enable integrated Wireless (Raspberry 3 only)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -829,7 +910,7 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>620</x>
       <y>290</y>
       <width>101</width>
       <height>31</height>
@@ -846,7 +927,7 @@
    <widget class="QPushButton" name="rescan_pushButton">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>510</x>
       <y>290</y>
       <width>101</width>
       <height>31</height>

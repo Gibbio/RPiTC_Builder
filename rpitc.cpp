@@ -51,6 +51,9 @@ QString b43_firmware_pkgs = "not_present";
 QString overclock_pkgs = "not_present";
 QString custom1_pkgs = "not_present";
 
+QString int_bluetooth_pkgs = "not_present";
+QString int_wlan_pkgs = "not_present";
+
 RPiTC::RPiTC(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::RPiTC)
@@ -438,7 +441,7 @@ void RPiTC::on_pushButton_clicked()
                             "apt-get remove --purge -y bluez bluez-cups bluez-tools\n";
         }
     }
-    //######################START CUSTOM/OTHER SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
+    //######################INTERNAL BOARD HARDWARE ##################ßß
     if (true) {
         // OVERCLOCK
         if (ui->overclock_checkBox->isChecked() && overclock_pkgs == "not_present") { qDebug() << "I have to enable the overclock!";
@@ -457,6 +460,33 @@ void RPiTC::on_pushButton_clicked()
                             "sed -i '/^over_voltage/{s/^/#/}' /boot/config.txt\n"
                             "sed -i '/^initial_turbo/{s/^/#/}' /boot/config.txt\n";
         }
+        //BLUETOOTH INTERNAL ADAPTER
+        if (ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "not_present") { qDebug() << "I have to enable the internal BT adapter!";
+        bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter install cmds:\n"
+                            "apt-get install -y pi-bluetooth\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/bluetooth-ui.tar.gz -O /tmp/bluetooth-ui.tar.gz\ntar xf /tmp/bluetooth-ui.tar.gz -C /\n"
+                            "# Add Bluetooth-UI icon to docky system menu:\n/opt/scripts/dockyadd_sys.sh bluetooth-ui.desktop\n";
+        }
+        if (!ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "installed") { qDebug() << "I have to disable the internal BT adapter!";
+        bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter cmds:\n"
+                            "apt-get remove --purge -y pi-bluetooth bluez\n"
+                            "# Remove Bluetooth-UI icon from docky sys menu:\n/opt/scripts/dockyrm_sys.sh bluetooth-ui.desktop\n"
+                            "rm -fr /usr/share/unity-control-center/pin-code-database.xml /usr/share/unity-control-center/wizard.ui /usr/bin/bluetooth-wizard /usr/share/applications/bluetooth-ui.desktop /usr/bin/bluetooth-wizard /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0 /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0.0.0\n";
+        }
+        //WLAN INTERNAL ADAPTER
+        if (ui->wireless_checkBox->isChecked() && int_wlan_pkgs == "not_present") { qDebug() << "I have to enable the internal WLAN adapter!";
+        bash_me = bash_me + "\n####### RaspberryPi3 Internal WLAN adapter install cmds:\n"
+                            "mkdir -p /lib/firmware/brcm/\n"
+                            "ln -s /opt/binaries/brcmfmac43430-sdio.txt /lib/firmware/brcm/brcmfmac43430-sdio.txt\n"
+                            "ln -s /opt/binaries/brcmfmac43430-sdio.bin /lib/firmware/brcm/brcmfmac43430-sdio.bin\n";
+        }
+        if (!ui->wireless_checkBox->isChecked() && int_wlan_pkgs == "installed") { qDebug() << "I have to disable the internal WLAN adapter!";
+        bash_me = bash_me + "\n####### RaspberryPi3 Internal WLAN adapter cmds:\n"
+                            "rm -fr /lib/firmware/brcm/brcmfmac43430-sdio.txt /lib/firmware/brcm/brcmfmac43430-sdio.bin\n";
+        }
+    }
+    //######################START CUSTOM/OTHER SERVICES INSTALLATION/REMOVE ROUTINES##################ßß
+    if (true) {
         // UPDATE RPITC BUILDER
         if (ui->update_checkBox->isChecked()) { qDebug() << "UPDATE RPITC BUILDER!!";
             //clean bashme.sh and apply the update script!
@@ -826,6 +856,18 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "B43-FIRMWARE is installed"; ui->b43_firmware_checkBox->setChecked(true); b43_firmware_pkgs = "installed";
         } else {
             qDebug() << "B43-FIRMWARE missing"; ui->b43_firmware_checkBox->setChecked(false); b43_firmware_pkgs = "not_present";
+        }
+        // INTERNAL BLUETOOTH
+        if (QFile("/usr/bin/bluetooth-wizard").exists()) {
+            qDebug() << "INTERNAL BLUETOOTH is enabled"; ui->bluetooth_checkBox->setChecked(true); int_bluetooth_pkgs = "installed";
+        } else {
+            qDebug() << "INTERNAL BLUETOOTH is disabled/not present"; ui->bluetooth_checkBox->setChecked(false); int_bluetooth_pkgs = "not_present";
+        }
+        // INTERNAL WLAN
+        if (QFile("/lib/firmware/brcm/brcmfmac43430-sdio.bin").exists()) {
+            qDebug() << "INTERNAL WLAN is enabled"; ui->wireless_checkBox->setChecked(true); int_wlan_pkgs = "installed";
+        } else {
+            qDebug() << "INTERNAL WLAN is disabled/not present"; ui->wireless_checkBox->setChecked(false); int_wlan_pkgs = "not_present";
         }
     }
 }
