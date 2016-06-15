@@ -125,12 +125,12 @@ void RPiTC::on_pushButton_clicked()
         // PARALLELS 2X:
         if (ui->twox_checkBox->isChecked() && twox_pkgs == "not_present") { qDebug() << "I have to install Parallel 2X!";
         bash_me = bash_me + "\n####### PARALLELS 2X Install cmds:\n"
-                            "apt-get install -y 2xclient libqtdbus4 libqt4-network\n"
+                            "apt-get install -y rasclient\n"
                             "# Add 2X icon to docky menu:\n/opt/scripts/dockyadd.sh 2xclient.desktop\n";
         }
         if (!ui->twox_checkBox->isChecked() && twox_pkgs == "installed") { qDebug() << "I have to remove Parallel 2X!";
         bash_me = bash_me + "\n####### PARALLELS 2X Remove cmds:\n"
-                            "apt-get remove --purge -y 2xclient\n"
+                            "apt-get remove --purge -y rasclient\n"
                             "# Remove 2X icon from docky menu:\n/opt/scripts/dockyrm.sh 2xclient.desktop\n";
         }
         // NOMACHINE NX
