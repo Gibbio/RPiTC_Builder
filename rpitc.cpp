@@ -219,7 +219,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Install cmds:\n"
                             "apt-get install -y libssl1.0.0\n"
-                            "wget http://dl.armtc.net/RPi-TC/packages/xfreerdp -O /usr/bin/xfreerdp_git\nchmod +x /usr/bin/xfreerdp_git\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/xfreerdp_LATEST -O /usr/bin/xfreerdp_git\nchmod +x /usr/bin/xfreerdp_git\n"
                             "ln -s /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/xFreeRDP_GIT.desktop\n"
                             "# Add xFreeRDP_GIT icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP_GIT.desktop\n";
         }
@@ -259,15 +259,14 @@ void RPiTC::on_pushButton_clicked()
         // SPICE
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
-                            "apt-get install -y spice-client-gtk\n"
-                            "ln -s /opt/config/spicy.desktop /usr/share/applications/spicy.desktop\n"
-                            "# Add SPICE icon to docky menu:\n/opt/scripts/dockyadd.sh spicy.desktop\n";
+                            "wget http://dl.armtc.net/RPi-TC/packages/SpiceGTK.tar.gz -O /tmp/SpiceGTK.tar.gz\ntar xf /tmp/SpiceGTK.tar.gz -C /opt/\n"
+                            "ln -s /opt/config/spicegtk.desktop /usr/share/applications/spicegtk.desktop\n"
+                            "# Add SPICE icon to docky menu:\n/opt/scripts/dockyadd.sh spicegtk.desktop\n";
         }
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
-                            "apt-get remove --purge -y spice-client-gtk\n"
-                            "rm -fr /usr/share/applications/spicy.desktop\n"
-                            "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh spicy.desktop\n";
+                            "rm -fr /opt/SpiceGTK/ /usr/share/applications/spicegtk.desktop\n"
+                            "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh spicegtk.desktop\n";
         }
         // TN5250
         if (ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "not_present") { qDebug() << "I have to install TN5250!";
@@ -494,10 +493,10 @@ void RPiTC::on_pushButton_clicked()
                       "#Close the RPiTC before update:\n"
                       "killall -9 RPiTC\n"
                       "#get lastest version from GIT:\n"
-                      "wget https://raw.githubusercontent.com/Gibbio/RPiTC_Builder/master/RPiTC -O /opt/binaries/RPiTC\n"
+                      "wget https://raw.githubusercontent.com/Gibbio/RPiTC_Builder/master/RPiTC_armhf -O /opt/binaries/RPiTC\n"
                       "#restart RPiTC and close this xterm window:\n"
                       "/opt/binaries/RPiTC &\n"
-                      "exit;exit\n";
+                      "exit\n";
         }
         // CUSTOM
         if (ui->custom_checkBox->isChecked() && custom1_pkgs == "not_present") { qDebug() << "I have to install CUSTOM1!";
@@ -658,7 +657,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "X2GO Client Receiver missing"; ui->x2go_checkBox->setChecked(false); x2go_pkgs = "not_present";
         }
         // SPICE
-        if (QFile("/usr/bin/spicy").exists()) {
+        if (QFile("/opt/SpiceGTK/bin/remote-viewer").exists()) {
             qDebug() << "SPICE is installed"; ui->spice_checkBox->setChecked(true); spice_pkgs = "installed";
         } else {
             qDebug() << "SPICE missing"; ui->spice_checkBox->setChecked(false); spice_pkgs = "not_present";
