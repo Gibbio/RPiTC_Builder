@@ -462,13 +462,13 @@ void RPiTC::on_pushButton_clicked()
         //BLUETOOTH INTERNAL ADAPTER
         if (ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "not_present") { qDebug() << "I have to enable the internal BT adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter install cmds:\n"
-                            "apt-get install -y pi-bluetooth\n"
+                            "apt-get install -y pi-bluetooth pulseaudio-module-bluetooth\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/bluetooth-ui.tar.gz -O /tmp/bluetooth-ui.tar.gz\ntar xf /tmp/bluetooth-ui.tar.gz -C /\n"
                             "# Add Bluetooth-UI icon to docky system menu:\n/opt/scripts/dockyadd_sys.sh bluetooth-ui.desktop\n";
         }
         if (!ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "installed") { qDebug() << "I have to disable the internal BT adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter cmds:\n"
-                            "apt-get remove --purge -y pi-bluetooth bluez\n"
+                            "apt-get remove --purge -y pi-bluetooth bluez pulseaudio-module-bluetooth\n"
                             "# Remove Bluetooth-UI icon from docky sys menu:\n/opt/scripts/dockyrm_sys.sh bluetooth-ui.desktop\n"
                             "rm -fr /usr/share/unity-control-center/pin-code-database.xml /usr/share/unity-control-center/wizard.ui /usr/bin/bluetooth-wizard /usr/share/applications/bluetooth-ui.desktop /usr/bin/bluetooth-wizard /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0 /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0.0.0\n";
         }
