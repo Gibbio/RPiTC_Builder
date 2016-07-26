@@ -98,7 +98,7 @@
        <item>
         <widget class="QCheckBox" name="thinlinc_checkBox">
          <property name="text">
-          <string>Thinlinc Client 4.5.0</string>
+          <string>Thinlinc Client 4.6.0</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -143,7 +143,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>H.264 HW acceleration for RPi2 (beta)</string>
+       <string>H.264 HW acceleration for RPi2/3 (beta)</string>
       </property>
       <property name="icon">
        <iconset resource="icons.qrc">
