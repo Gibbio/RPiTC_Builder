@@ -65,7 +65,7 @@
        <item>
         <widget class="QCheckBox" name="ica_checkBox">
          <property name="text">
-          <string>Citrix Receiver 13.3</string>
+          <string>Citrix Receiver 13.3.2</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">

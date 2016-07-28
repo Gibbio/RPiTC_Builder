@@ -82,7 +82,7 @@ void RPiTC::on_pushButton_clicked()
         // CITRIX RECEIVER:
         if (ui->ica_checkBox->isChecked() && ica_pkgs == "not_present") { qDebug() << "I have to install Citrix Receiver!";
         bash_me = bash_me + "\n####### CITRIX RECEIVER Install cmds:\n"
-                            "apt-get install -y icaclient ctxusb libcurl4-gnutls-dev\nsystemctl enable ctxusbd\n"
+                            "apt-get install -y icaclient ctxusb libcurl4-gnutls-dev libwebkitgtk-1.0-0\nsystemctl enable ctxusbd\n"
                             "ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/\n"
                             "c_rehash /opt/Citrix/ICAClient/keystore/cacerts/\n"
                             "#seem that eula.txt is missing from some folder... This will stop ICA client 13.3 from starting, lol\n"
@@ -99,7 +99,8 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->ica_checkBox->isChecked() && ica_pkgs == "installed") { qDebug() << "I have to remove Citrix Receiver!";
         bash_me = bash_me + "\n####### CITRIX RECEIVER Remove cmds:\n"
-                            "apt-get remove --purge -y icaclient ctxusb libcurl4-gnutls-dev\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n"
+                            "apt-get remove --purge -y icaclient ctxusb libcurl4-gnutls-dev libwebkitgtk-1.0-0\napt-get autoremove --purge -y\nsystemctl disable ctxusbd\n"
+                            "rm -fr /opt/Citrix\n"
                             "# Remove ICA icon from docky menu:\n/opt/scripts/dockyrm.sh selfservice.desktop\n";
         }
         // ICA H.264 Acceleration:
