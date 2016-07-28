@@ -155,7 +155,7 @@ void RPiTC::on_pushButton_clicked()
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/vmwh410.tar.gz -O /tmp/vmwh410.tar.gz\ntar xf /tmp/vmwh410.tar.gz -C /tmp/\n/tmp/install\n"
                             "systemctl enable vmwareusbd\nsystemctl start vmwareusbd\n"
-                            "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-horizon.desktop\n";
+                            "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-view.desktop\n";
         }
         if (!ui->vmware_checkBox->isChecked() && vmware_pkgs == "installed") { qDebug() << "I have to remove VMWare Horizon!";
         bash_me = bash_me + "\n####### VMWARE HORIZON Remove cmds:\n"
