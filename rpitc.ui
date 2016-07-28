@@ -120,7 +120,7 @@
        <item>
         <widget class="QCheckBox" name="browser_checkBox">
          <property name="text">
-          <string>Iceweasel browser (Debian repo)</string>
+          <string>Firefox browser (Debian repo)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">

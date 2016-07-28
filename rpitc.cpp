@@ -177,15 +177,15 @@ void RPiTC::on_pushButton_clicked()
                             "# Remove Thinlinc icon from docky menu:\n/opt/scripts/dockyrm.sh thinlinc-client.desktop\n";
         }
         // BROWSER
-        if (ui->browser_checkBox->isChecked() && browser_pkgs == "not_present") { qDebug() << "I have to install Iceweasel/Firefox!";
+        if (ui->browser_checkBox->isChecked() && browser_pkgs == "not_present") { qDebug() << "I have to install Firefox!";
         bash_me = bash_me + "\n####### BROWSER Install cmds:\n"
-                            "apt-get install -y iceweasel\n"
-                            "# Add Iceweasel icon to docky menu:\n/opt/scripts/dockyadd.sh iceweasel.desktop\n";
+                            "apt-get install -y firefox-esr\n"
+                            "# Add Firefox icon to docky menu:\n/opt/scripts/dockyadd.sh firefox-esr.desktop\n";
         }
-        if (!ui->browser_checkBox->isChecked() && browser_pkgs == "installed") { qDebug() << "I have to remove Iceweasel/Firefox!";
+        if (!ui->browser_checkBox->isChecked() && browser_pkgs == "installed") { qDebug() << "I have to remove Firefox!";
         bash_me = bash_me + "\n####### BROWSER Remove cmds:\n"
-                            "apt-get remove --purge -y iceweasel\n"
-                            "# Remove Iceweasel icon from docky menu:\n/opt/scripts/dockyrm.sh iceweasel.desktop\n";
+                            "apt-get remove --purge -y firefox-esr\n"
+                            "# Remove Firefox icon from docky menu:\n/opt/scripts/dockyrm.sh firefox-esr.desktop\n";
         }
     }
     //######################START RDP CLIENTS INSTALLATION/REMOVE ROUTINES##################ßß
@@ -463,6 +463,13 @@ void RPiTC::on_pushButton_clicked()
         //BLUETOOTH INTERNAL ADAPTER
         if (ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "not_present") { qDebug() << "I have to enable the internal BT adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter install cmds:\n"
+                            "A patch for the internal bt is needed... lol fail!\n"
+                            "rm -fr /tmp/*.deb\n"
+                            "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/libbluetooth3_5.23-2+rpi2_armhf.deb -O /tmp/libbluetooth3_5.23-2+rpi2_armhf.deb\n"
+                            "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluez_5.23-2+rpi2_armhf.deb -O /tmp/bluez_5.23-2+rpi2_armhf.deb\n"
+                            "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluetooth_5.23-2+rpi2_all.deb -O /tmp/bluetooth_5.23-2+rpi2_all.deb\n"
+                            "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluez-hcidump_5.23-2+rpi2_armhf.deb -O /tmp/bluez-hcidump_5.23-2+rpi2_armhf.deb\n"
+                            "dpkg -i /tmp/*.deb\n"
                             "apt-get install -y pi-bluetooth pulseaudio-module-bluetooth\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/bluetooth-ui.tar.gz -O /tmp/bluetooth-ui.tar.gz\ntar xf /tmp/bluetooth-ui.tar.gz -C /\n"
                             "# Add Bluetooth-UI icon to docky system menu:\n/opt/scripts/dockyadd_sys.sh bluetooth-ui.desktop\n";
@@ -642,11 +649,11 @@ void RPiTC::on_rescan_pushButton_clicked()
         } else {
             qDebug() << "Parallels 2X missing"; ui->twox_checkBox->setChecked(false); twox_pkgs = "not_present";
         }
-        // ICEWEASEL:
+        // FIREFOX:
         if (QFile("/usr/bin/firefox").exists()) {
-            qDebug() << "Iceweasel is installed"; ui->browser_checkBox->setChecked(true); browser_pkgs = "installed";
+            qDebug() << "Firefox is installed"; ui->browser_checkBox->setChecked(true); browser_pkgs = "installed";
         } else {
-            qDebug() << "Iceweasel missing"; ui->browser_checkBox->setChecked(false); browser_pkgs = "not_present";
+            qDebug() << "Firefox missing"; ui->browser_checkBox->setChecked(false); browser_pkgs = "not_present";
         }
     }
     //######################START OTHER CLIENTS CHECK####################ßß
