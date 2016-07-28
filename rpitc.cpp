@@ -687,13 +687,13 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "Xephyr missing"; ui->xephyr_checkBox->setChecked(false); xephyr_pkgs = "not_present";
         }
         // ORACLE-JAVA7-JDK
-        if (QFile("/usr/lib/jvm/jdk-7-oracle-armhf/debian/info").exists()) {
+        if (QFile("/usr/share/doc/oracle-java7-jdk/copyright").exists()) {
             qDebug() << "ORACLE-JAVA7-JDK is installed"; ui->jdk7_checkBox->setChecked(true); jdk7_pkgs = "installed";
         } else {
             qDebug() << "ORACLE-JAVA7-JDK missing"; ui->jdk7_checkBox->setChecked(false); jdk7_pkgs = "not_present";
         }
         // ORACLE-JAVA8-JDK
-        if (QFile("/usr/lib/jvm/jdk-8-oracle-armhf/debian/info").exists()) {
+        if (QFile("/usr/share/doc/oracle-java8-jdk/copyright").exists()) {
             qDebug() << "ORACLE-JAVA8-JDK is installed"; ui->jdk8_checkBox->setChecked(true); jdk8_pkgs = "installed";
         } else {
             qDebug() << "ORACLE-JAVA8-JDK missing"; ui->jdk8_checkBox->setChecked(false); jdk8_pkgs = "not_present";
