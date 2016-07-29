@@ -260,14 +260,18 @@ void RPiTC::on_pushButton_clicked()
         // SPICE
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
-                            "wget http://dl.armtc.net/RPi-TC/packages/SpiceGTK.tar.gz -O /tmp/SpiceGTK.tar.gz\ntar xf /tmp/SpiceGTK.tar.gz -C /opt/\n"
-                            "ln -s /opt/config/spicegtk.desktop /usr/share/applications/spicegtk.desktop\n"
-                            "# Add SPICE icon to docky menu:\n/opt/scripts/dockyadd.sh spicegtk.desktop\n";
+                            "wget http://dl.armtc.net/RPi-TC/packages/spice.tar.gz -O /tmp/spice.tar.gz\ntar xf /tmp/spice.tar.gz -C /opt/\n"
+                            "apt-get install -y libgtk-vnc-2.0-0\n"
+                            "ln -s /opt/spice/lib/mozilla/plugins/npSpiceConsole.so /usr/lib/mozilla/plugins/npSpiceConsole.so\n"
+                            "mkdir -p /usr/libexec/\n"
+                            "ln -s /opt/spice/libexec/spice-xpi-client-remote-viewer /usr/libexec/spice-xpi-client\n"
+                            "cp -rp /opt/spice/share/applications/remote-viewer.desktop /usr/share/applications/remote-viewer.desktop\n"
+                            "# Add SPICE icon to docky menu:\n/opt/scripts/dockyadd.sh remote-viewer.desktop\n";
         }
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
-                            "rm -fr /opt/SpiceGTK/ /usr/share/applications/spicegtk.desktop\n"
-                            "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh spicegtk.desktop\n";
+                            "rm -fr /opt/spice /usr/share/applications/remote-viewer.desktop /usr/lib/mozilla/plugins/npSpiceConsole.so /usr/libexec/spice-xpi-client\n"
+                            "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh remote-viewer.desktop\n";
         }
         // TN5250
         if (ui->tn5250_checkBox->isChecked() && tn5250_pkgs == "not_present") { qDebug() << "I have to install TN5250!";
@@ -665,7 +669,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "X2GO Client Receiver missing"; ui->x2go_checkBox->setChecked(false); x2go_pkgs = "not_present";
         }
         // SPICE
-        if (QFile("/opt/SpiceGTK/bin/remote-viewer").exists()) {
+        if (QFile("/opt/spice/bin/remote-viewer").exists()) {
             qDebug() << "SPICE is installed"; ui->spice_checkBox->setChecked(true); spice_pkgs = "installed";
         } else {
             qDebug() << "SPICE missing"; ui->spice_checkBox->setChecked(false); spice_pkgs = "not_present";
