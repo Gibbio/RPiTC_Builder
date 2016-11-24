@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RPiTC Builder (beta v0.98)</string>
+   <string>RPiTC Builder (beta v0.99)</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -65,7 +65,7 @@
        <item>
         <widget class="QCheckBox" name="ica_checkBox">
          <property name="text">
-          <string>Citrix Receiver 13.3.2</string>
+          <string>Citrix Receiver 13.4.1</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -76,7 +76,7 @@
        <item>
         <widget class="QCheckBox" name="vmware_checkBox">
          <property name="text">
-          <string>VMWare Horizon 4.1</string>
+          <string>VMWare Horizon 4.2</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -87,7 +87,7 @@
        <item>
         <widget class="QCheckBox" name="nomachine_checkBox">
          <property name="text">
-          <string>NoMachine NX 5.1.26</string>
+          <string>NoMachine NX 5.1.62</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -98,7 +98,7 @@
        <item>
         <widget class="QCheckBox" name="thinlinc_checkBox">
          <property name="text">
-          <string>Thinlinc Client 4.6.0</string>
+          <string>Thinlinc Client 4.7.0</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -109,7 +109,7 @@
        <item>
         <widget class="QCheckBox" name="twox_checkBox">
          <property name="text">
-          <string>Parallels 15.0</string>
+          <string>Parallels 15.5</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -264,7 +264,7 @@
        <item>
         <widget class="QCheckBox" name="spice_checkBox">
          <property name="text">
-          <string>SPICE Client 4.0 (RPi-TC Package)</string>
+          <string>SPICE Client 5.0 (RPi-TC Package)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
