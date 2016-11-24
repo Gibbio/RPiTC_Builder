@@ -154,7 +154,7 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### VMWARE HORIZON Install cmds:\n"
                             "apt-get install libudev1 libxss1\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
-                            "wget http://dl.armtc.net/RPi-TC/packages/vmwh410.tar.gz -O /tmp/vmwh410.tar.gz\ntar xf /tmp/vmwh410.tar.gz -C /tmp/\n/tmp/install\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/vmwh_LATEST.tar.gz -O /tmp/vmwh_LATEST.tar.gz\ntar xf /tmp/vmwh_LATEST.tar.gz -C /tmp/\n/tmp/install\n"
                             "systemctl enable vmware-USBArbitrator\nsystemctl start vmware-USBArbitrator\n"
                             "systemctl enable vmware-view-USBD\nsystemctl start vmware-view-USBD\n"
                             "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-view.desktop\n";
@@ -262,7 +262,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/spice.tar.gz -O /tmp/spice.tar.gz\ntar xf /tmp/spice.tar.gz -C /opt/\n"
-                            "apt-get install -y libgtk-vnc-2.0-0\n"
+                            "apt-get install -y libgtk-vnc-2.0-0 0 liblz4-1 libvirt0 libgovirt2 libxml2\n"
                             "ln -s /opt/spice/lib/mozilla/plugins/npSpiceConsole.so /usr/lib/mozilla/plugins/npSpiceConsole.so\n"
                             "mkdir -p /usr/libexec/\n"
                             "ln -s /opt/spice/libexec/spice-xpi-client-remote-viewer /usr/libexec/spice-xpi-client\n"
@@ -402,12 +402,12 @@ void RPiTC::on_pushButton_clicked()
         // VIRTUALHERE
         if (ui->virtualhere_checkBox->isChecked() && virtualhere_pkgs == "not_present") { qDebug() << "I have to install VirtualHere USB Server!";
         bash_me = bash_me + "\n####### VIRTUALHERE Install cmds:\n"
-                            "wget https://www.virtualhere.com/sites/default/files/usbserver/vhusbdarmpi2 -O /usr/bin/vhusbdarmpi2\nchmod +x /usr/bin/vhusbdarmpi2\n"
-                            "cp /opt/scripts/vhusbdarmpi2 /etc/init.d/\nsystemctl enable vhusbdarmpi2;systemctl start vhusbdarmpi2\n";
+                            "wget https://www.virtualhere.com/sites/default/files/usbserver/vhusbdarm -O /usr/bin/vhusbdarm\nchmod +x /usr/bin/vhusbdarm\n"
+                            "cp /opt/scripts/vhusbdarm /etc/init.d/\nsystemctl enable vhusbdarm;systemctl start vhusbdarm\n";
         }
         if (!ui->virtualhere_checkBox->isChecked() && virtualhere_pkgs == "installed") { qDebug() << "I have to remove VirtualHere USB Server!";
         bash_me = bash_me + "\n####### VIRTUALHERE Remove cmds:\n"
-                            "systemctl stop vhusbdarmpi2;systemctl disable vhusbdarmpi2;rm -fr /usr/bin/vhusbdarmpi2 /etc/init.d/vhusbdarmpi2\n";
+                            "systemctl stop vhusbdarm;systemctl disable vhusbdarm;rm -fr /usr/bin/vhusbdarm /etc/init.d/vhusbdarm\n";
         }
         // OPENCONNECT
         if (ui->openconnect_checkBox->isChecked() && openconnect_pkgs == "not_present") { qDebug() << "I have to install Openconnect VPN!";
@@ -772,7 +772,7 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "Conky missing"; ui->conky_checkBox->setChecked(false); conky_pkgs = "not_present";
         }
         // VIRTUALHERE
-        if (QFile("/usr/bin/vhusbdarmpi2").exists()) {
+        if (QFile("/usr/bin/vhusbdarm").exists()) {
             qDebug() << "VirtualHere USB Server is installed"; ui->virtualhere_checkBox->setChecked(true); virtualhere_pkgs = "installed";
         } else {
             qDebug() << "VirtualHere USB Server missing"; ui->virtualhere_checkBox->setChecked(false); virtualhere_pkgs = "not_present";
