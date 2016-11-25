@@ -261,7 +261,7 @@ void RPiTC::on_pushButton_clicked()
         if (ui->spice_checkBox->isChecked() && spice_pkgs == "not_present") { qDebug() << "I have to install spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Install cmds:\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/spice.tar.gz -O /tmp/spice.tar.gz\ntar xf /tmp/spice.tar.gz -C /opt/\n"
-                            "apt-get install -y libgtk-vnc-2.0-0 0 liblz4-1 libvirt0 libgovirt2 libxml2\n"
+                            "apt-get install -y libgtk-vnc-2.0-0 liblz4-1 libvirt0 libgovirt2 libxml2\n"
                             "ln -s /opt/spice/lib/mozilla/plugins/npSpiceConsole.so /usr/lib/mozilla/plugins/npSpiceConsole.so\n"
                             "mkdir -p /usr/libexec/\n"
                             "ln -s /opt/spice/libexec/spice-xpi-client-remote-viewer /usr/libexec/spice-xpi-client\n"
