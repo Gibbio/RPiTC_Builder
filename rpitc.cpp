@@ -271,6 +271,7 @@ void RPiTC::on_pushButton_clicked()
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
                             "rm -fr /opt/spice /usr/share/applications/remote-viewer.desktop /usr/lib/mozilla/plugins/npSpiceConsole.so /usr/libexec/spice-xpi-client\n"
+			    "apt-get remove --purge -y libgovirt2 libvirt0\n"
                             "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh remote-viewer.desktop\n";
         }
         // TN5250
@@ -467,29 +468,31 @@ void RPiTC::on_pushButton_clicked()
         //BLUETOOTH INTERNAL ADAPTER
         if (ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "not_present") { qDebug() << "I have to enable the internal BT adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter install cmds:\n"
-                            "A patch for the internal bt is needed... lol fail!\n"
+                            "#A patced bluez for the internal bt is needed... lol\n"
                             "rm -fr /tmp/*.deb\n"
                             "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/libbluetooth3_5.23-2+rpi2_armhf.deb -O /tmp/libbluetooth3_5.23-2+rpi2_armhf.deb\n"
                             "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluez_5.23-2+rpi2_armhf.deb -O /tmp/bluez_5.23-2+rpi2_armhf.deb\n"
                             "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluetooth_5.23-2+rpi2_all.deb -O /tmp/bluetooth_5.23-2+rpi2_all.deb\n"
                             "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluez-hcidump_5.23-2+rpi2_armhf.deb -O /tmp/bluez-hcidump_5.23-2+rpi2_armhf.deb\n"
                             "dpkg -i /tmp/*.deb\n"
+			    "mkdir -p /lib/firmware/brcm; cp /opt/binaries/BCM43430A1.hcd /lib/firmware/brcm/BCM43430A1.hcd\n"
                             "apt-get install -y pi-bluetooth pulseaudio-module-bluetooth\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/bluetooth-ui.tar.gz -O /tmp/bluetooth-ui.tar.gz\ntar xf /tmp/bluetooth-ui.tar.gz -C /\n"
+			    "systemctl enable bluetooth; systemctl start bluetooth\n"
                             "# Add Bluetooth-UI icon to docky system menu:\n/opt/scripts/dockyadd_sys.sh bluetooth-ui.desktop\n";
         }
         if (!ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "installed") { qDebug() << "I have to disable the internal BT adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter cmds:\n"
-                            "apt-get remove --purge -y pi-bluetooth bluez pulseaudio-module-bluetooth\n"
+                            "apt-get remove --purge -y pi-bluetooth bluez pulseaudio-module-bluetooth bluez-hcidump bluetooth libbluetooth3\n"
                             "# Remove Bluetooth-UI icon from docky sys menu:\n/opt/scripts/dockyrm_sys.sh bluetooth-ui.desktop\n"
-                            "rm -fr /usr/share/unity-control-center/pin-code-database.xml /usr/share/unity-control-center/wizard.ui /usr/bin/bluetooth-wizard /usr/share/applications/bluetooth-ui.desktop /usr/bin/bluetooth-wizard /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0 /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0.0.0\n";
+                            "rm -fr /usr/share/unity-control-center/pin-code-database.xml /usr/share/unity-control-center/wizard.ui /usr/bin/bluetooth-wizard /usr/share/applications/bluetooth-ui.desktop /usr/bin/bluetooth-wizard /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0 /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0.0.0 /lib/firmware/brcm/BCM43430A1.hcd\n";
         }
         //WLAN INTERNAL ADAPTER
         if (ui->wireless_checkBox->isChecked() && int_wlan_pkgs == "not_present") { qDebug() << "I have to enable the internal WLAN adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal WLAN adapter install cmds:\n"
                             "mkdir -p /lib/firmware/brcm/\n"
-                            "ln -s /opt/binaries/brcmfmac43430-sdio.txt /lib/firmware/brcm/brcmfmac43430-sdio.txt\n"
-                            "ln -s /opt/binaries/brcmfmac43430-sdio.bin /lib/firmware/brcm/brcmfmac43430-sdio.bin\n";
+                            "cp /opt/binaries/brcmfmac43430-sdio.txt /lib/firmware/brcm/brcmfmac43430-sdio.txt\n"
+                            "cp /opt/binaries/brcmfmac43430-sdio.bin /lib/firmware/brcm/brcmfmac43430-sdio.bin\n";
         }
         if (!ui->wireless_checkBox->isChecked() && int_wlan_pkgs == "installed") { qDebug() << "I have to disable the internal WLAN adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal WLAN adapter cmds:\n"
