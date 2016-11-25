@@ -270,7 +270,7 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
-                            "rm -fr /opt/spice /usr/share/applications/remote-viewer.desktop /usr/lib/mozilla/plugins/npSpiceConsole.so /usr/libexec/spice-xpi-client\n"
+                            "rm -fr /opt/spice /usr/share/applications/remote-viewer.desktop /usr/lib/mozilla/plugins/npSpiceConsole.so /usr/libexec/spice-xpi-client /opt/spice/\n"
 			    "apt-get remove --purge -y libgovirt2 libvirt0\n"
                             "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh remote-viewer.desktop\n";
         }
@@ -483,7 +483,7 @@ void RPiTC::on_pushButton_clicked()
         }
         if (!ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "installed") { qDebug() << "I have to disable the internal BT adapter!";
         bash_me = bash_me + "\n####### RaspberryPi3 Internal Bluetooth adapter cmds:\n"
-                            "apt-get remove --purge -y pi-bluetooth bluez pulseaudio-module-bluetooth bluez-hcidump bluetooth libbluetooth3\n"
+                            "apt-get remove --purge -y pi-bluetooth bluez pulseaudio-module-bluetooth bluez-hcidump bluetooth\n"
                             "# Remove Bluetooth-UI icon from docky sys menu:\n/opt/scripts/dockyrm_sys.sh bluetooth-ui.desktop\n"
                             "rm -fr /usr/share/unity-control-center/pin-code-database.xml /usr/share/unity-control-center/wizard.ui /usr/bin/bluetooth-wizard /usr/share/applications/bluetooth-ui.desktop /usr/bin/bluetooth-wizard /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0 /usr/lib/arm-linux-gnueabihf/libgnome-bluetooth.so.0.0.0 /lib/firmware/brcm/BCM43430A1.hcd\n";
         }
