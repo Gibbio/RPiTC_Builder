@@ -612,7 +612,7 @@
     </widget>
     <widget class="QWidget" name="othercfg_tab">
      <attribute name="title">
-      <string>Other Settings</string>
+      <string>Other</string>
      </attribute>
      <widget class="QWidget" name="verticalLayoutWidget_6">
       <property name="geometry">
