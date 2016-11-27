@@ -221,7 +221,7 @@ void RPiTC::on_pushButton_clicked()
         // XFREERDP GIT
         if (ui->xfreerdpgit_checkBox->isChecked() && xfreerdpgit_pkgs == "not_present") { qDebug() << "I have to install xFreeRDP GIT!";
         bash_me = bash_me + "\n####### XFREERDP GIT Install cmds:\n"
-                            "apt-get install -y libssl1.0.0\n"
+                            "apt-get install -y libssl1.0.0 libx264\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/xfreerdp_LATEST -O /usr/bin/xfreerdp_git\nchmod +x /usr/bin/xfreerdp_git\n"
                             "ln -s /opt/config/xFreeRDP_GIT.desktop /usr/share/applications/xFreeRDP_GIT.desktop\n"
                             "# Add xFreeRDP_GIT icon to docky menu:\n/opt/scripts/dockyadd.sh xFreeRDP_GIT.desktop\n";
