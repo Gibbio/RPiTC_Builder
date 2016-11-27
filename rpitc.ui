@@ -365,6 +365,77 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="rpi3_tab">
+     <attribute name="title">
+      <string>Raspberry HW</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>391</width>
+        <height>119</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="overclock_checkBox">
+         <property name="text">
+          <string>Overclock the RPi2/3 board (safe options)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="bluetooth_checkBox">
+         <property name="text">
+          <string>Enable integrated Bluetooth (Raspberry 3 only)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="wireless_checkBox">
+         <property name="text">
+          <string>Enable integrated Wireless (Raspberry 3 only)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
     <widget class="QWidget" name="ospkgs_tab">
      <attribute name="title">
       <string>OS Services</string>
@@ -454,7 +525,7 @@
         <x>350</x>
         <y>10</y>
         <width>320</width>
-        <height>189</height>
+        <height>231</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="os2_verticalLayout">
@@ -525,74 +596,14 @@
          </property>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="rpi3_tab">
-     <attribute name="title">
-      <string>Hardware</string>
-     </attribute>
-     <widget class="QWidget" name="verticalLayoutWidget_9">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>391</width>
-        <height>119</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="topMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <property name="bottomMargin">
-        <number>10</number>
-       </property>
        <item>
-        <widget class="QCheckBox" name="overclock_checkBox">
+        <widget class="QCheckBox" name="nagios_checkBox">
          <property name="text">
-          <string>Overclock the RPi2/3 board (safe options)</string>
+          <string>Nagios support (Debian repo)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
-           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="bluetooth_checkBox">
-         <property name="text">
-          <string>Enable integrated Bluetooth (Raspberry 3 only)</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="wireless_checkBox">
-         <property name="text">
-          <string>Enable integrated Wireless (Raspberry 3 only)</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/icons/overclock_icon.png</normaloff>:/icons/overclock_icon.png</iconset>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
+           <normaloff>:/icons/nagios_icon.png</normaloff>:/icons/nagios_icon.png</iconset>
          </property>
         </widget>
        </item>

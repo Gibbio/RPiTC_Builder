@@ -35,5 +35,6 @@
         <file>icons/firmware_icon.png</file>
         <file>icons/tn5250j_icon.png</file>
         <file>icons/Java_icon.png</file>
+        <file>icons/nagios_icon.png</file>
     </qresource>
 </RCC>

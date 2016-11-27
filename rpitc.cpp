@@ -38,6 +38,7 @@ QString openconnect_pkgs = "not_present";
 QString openvpn_pkgs = "not_present";
 QString vpnc_pkgs = "not_present";
 QString bluez_pkgs = "not_present";
+QString nagios_pkgs = "not_present";
 
 QString bluez_firmware_pkgs = "not_present";
 QString ath_firmware_pkgs = "not_present";
@@ -233,14 +234,17 @@ void RPiTC::on_pushButton_clicked()
         // DFREERDP
         if (ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "not_present") { qDebug() << "I have to install dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Install cmds:\n"
-                            "ln -s /opt/binaries/dfreerdp /usr/bin/dfreerdp\n"
+                            "apt-get install -y libdirectfb-1.2-9 libdirectfb-bin libdirectfb-extra\n"
+                            "wget http://dl.armtc.net/RPi-TC/packages/dfreerdp.tar.gz -O /tmp/dfreerdp.tar.gz\ntar xf /tmp/dfreerdp.tar.gz -C /usr/\n"
                             "ln -s /opt/config/fb.modes /etc/fb.modes;ln -s /opt/config/directfbrc /etc/directfbrc\n"
                             "ln -s /opt/config/dFreeRDP.desktop /usr/share/applications/dFreeRDP.desktop\n"
                             "# Add dFreeRDP icon to docky menu:\n/opt/scripts/dockyadd.sh dFreeRDP.desktop\n";
         }
         if (!ui->dfreerdp_checkBox->isChecked() && dfreerdp_pkgs == "installed") { qDebug() << "I have to remove dFreeRDP!";
         bash_me = bash_me + "\n####### DFREERDP Remove cmds:\n"
+                            "apt-get remove --purge -y libdirectfb-1.2-9 libdirectfb-bin libdirectfb-extra\n"
                             "rm -fr /etc/fb.modes /etc/directfbrc /usr/share/applications/dFreeRDP.desktop /usr/bin/dfreerdp\n"
+                            "find /usr|grep freerdp|xargs rm -fr\n"
                             "# Remove dFreeRDP icon from docky menu:\n/opt/scripts/dockyrm.sh dFreeRDP.desktop\n";
         }
     }
@@ -271,7 +275,7 @@ void RPiTC::on_pushButton_clicked()
         if (!ui->spice_checkBox->isChecked() && spice_pkgs == "installed") { qDebug() << "I have to remove spice client!";
         bash_me = bash_me + "\n####### SPICE CLIENT Remove cmds:\n"
                             "rm -fr /opt/spice /usr/share/applications/remote-viewer.desktop /usr/lib/mozilla/plugins/npSpiceConsole.so /usr/libexec/spice-xpi-client /opt/spice/\n"
-			    "apt-get remove --purge -y libgovirt2 libvirt0\n"
+                            "apt-get remove --purge -y libgovirt2 libvirt0\n"
                             "# Remove SPICE icon from docky menu:\n/opt/scripts/dockyrm.sh remote-viewer.desktop\n";
         }
         // TN5250
@@ -445,6 +449,15 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### BLUEZ Remove cmds:\n"
                             "apt-get remove --purge -y bluez bluez-cups bluez-tools\n";
         }
+        // NAGIOS
+        if (ui->nagios_checkBox->isChecked() && nagios_pkgs == "not_present") { qDebug() << "I have to install Nagios!";
+        bash_me = bash_me + "\n####### Nagios Install cmds:\n"
+                            "apt-get install -y nagios-nrpe-server nagios-plugins\n";
+        }
+        if (!ui->nagios_checkBox->isChecked() && nagios_pkgs == "installed") { qDebug() << "I have to remove Nagios!";
+        bash_me = bash_me + "\n####### Nagios Remove cmds:\n"
+                            "apt-get remove --purge -y nagios-nrpe-server nagios-plugins\n";
+        }
     }
     //######################INTERNAL BOARD HARDWARE ##################ßß
     if (true) {
@@ -475,10 +488,10 @@ void RPiTC::on_pushButton_clicked()
                             "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluetooth_5.23-2+rpi2_all.deb -O /tmp/bluetooth_5.23-2+rpi2_all.deb\n"
                             "wget http://archive.raspberrypi.org/debian/pool/main/b/bluez/bluez-hcidump_5.23-2+rpi2_armhf.deb -O /tmp/bluez-hcidump_5.23-2+rpi2_armhf.deb\n"
                             "dpkg -i /tmp/*.deb\n"
-			    "mkdir -p /lib/firmware/brcm; cp /opt/binaries/BCM43430A1.hcd /lib/firmware/brcm/BCM43430A1.hcd\n"
+                            "mkdir -p /lib/firmware/brcm; cp /opt/binaries/BCM43430A1.hcd /lib/firmware/brcm/BCM43430A1.hcd\n"
                             "apt-get install -y pi-bluetooth pulseaudio-module-bluetooth\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/bluetooth-ui.tar.gz -O /tmp/bluetooth-ui.tar.gz\ntar xf /tmp/bluetooth-ui.tar.gz -C /\n"
-			    "systemctl enable bluetooth; systemctl start bluetooth\n"
+                            "systemctl enable bluetooth; systemctl start bluetooth\n"
                             "# Add Bluetooth-UI icon to docky system menu:\n/opt/scripts/dockyadd_sys.sh bluetooth-ui.desktop\n";
         }
         if (!ui->bluetooth_checkBox->isChecked() && int_bluetooth_pkgs == "installed") { qDebug() << "I have to disable the internal BT adapter!";
@@ -802,6 +815,12 @@ void RPiTC::on_rescan_pushButton_clicked()
             qDebug() << "BLUEZ is installed"; ui->bluez_checkBox->setChecked(true); bluez_pkgs = "installed";
         } else {
             qDebug() << "BLUEZ missing"; ui->bluez_checkBox->setChecked(false); bluez_pkgs = "not_present";
+        }
+        // NAGIOS
+        if (QFile("/usr/sbin/nrpe").exists()) {
+            qDebug() << "Nagios is installed"; ui->nagios_checkBox->setChecked(true); nagios_pkgs = "installed";
+        } else {
+            qDebug() << "Nagios missing"; ui->nagios_checkBox->setChecked(false); nagios_pkgs = "not_present";
         }
     }
     //######################START CUSTOM/OTHER SERVICES CHECK######################ßß
