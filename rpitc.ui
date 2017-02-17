@@ -65,7 +65,7 @@
        <item>
         <widget class="QCheckBox" name="ica_checkBox">
          <property name="text">
-          <string>Citrix Receiver 13.4.1</string>
+          <string>Citrix Receiver 13.4.2</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -76,7 +76,7 @@
        <item>
         <widget class="QCheckBox" name="vmware_checkBox">
          <property name="text">
-          <string>VMWare Horizon 4.2</string>
+          <string>VMWare Horizon 4.3</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -87,7 +87,7 @@
        <item>
         <widget class="QCheckBox" name="nomachine_checkBox">
          <property name="text">
-          <string>NoMachine NX 5.1.62</string>
+          <string>NoMachine NX 5.2.11</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -264,7 +264,7 @@
        <item>
         <widget class="QCheckBox" name="spice_checkBox">
          <property name="text">
-          <string>SPICE Client 5.0 (RPi-TC Package)</string>
+          <string>SPICE Client 5.0 (Debian repo)</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
