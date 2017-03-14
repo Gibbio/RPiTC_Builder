@@ -153,7 +153,7 @@ void RPiTC::on_pushButton_clicked()
         // VMWARE HORIZON
         if (ui->vmware_checkBox->isChecked() && vmware_pkgs == "not_present") { qDebug() << "I have to install VMWare Horizon!";
         bash_me = bash_me + "\n####### VMWARE HORIZON Install cmds:\n"
-                            "apt-get install libudev1 libxss1\n"
+                            "apt-get install libudev1 libxss1 libglibmm-2.4-1v5 libsigc++-2.0-0v5\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
                             "wget http://dl.armtc.net/RPi-TC/packages/vmwh_LATEST.tar.gz -O /tmp/vmwh_LATEST.tar.gz\ntar xf /tmp/vmwh_LATEST.tar.gz -C /tmp/\n/tmp/install\n"
                             "systemctl enable vmware-USBArbitrator\nsystemctl start vmware-USBArbitrator\n"

@@ -65,7 +65,7 @@
        <item>
         <widget class="QCheckBox" name="ica_checkBox">
          <property name="text">
-          <string>Citrix Receiver 13.4.2</string>
+          <string>Citrix Receiver 13.5</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
@@ -76,7 +76,7 @@
        <item>
         <widget class="QCheckBox" name="vmware_checkBox">
          <property name="text">
-          <string>VMWare Horizon 4.3</string>
+          <string>VMWare Horizon 4.4</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
