@@ -155,7 +155,7 @@ void RPiTC::on_pushButton_clicked()
         bash_me = bash_me + "\n####### VMWARE HORIZON Install cmds:\n"
                             "apt-get install libudev1 libxss1 libglibmm-2.4-1v5 libsigc++-2.0-0v5\n"
                             "ln -s /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0\n"
-                            "wget http://dl.armtc.net/RPi-TC/packages/vmwh_LATEST.tar.gz -O /tmp/vmwh_LATEST.tar.gz\ntar xf /tmp/vmwh_LATEST.tar.gz -C /tmp/\n/tmp/install\n"
+                            "wget http://dl.armtc.net/packages/vmwh_LATEST.tar.gz -O /tmp/vmwh_LATEST.tar.gz\ntar xf /tmp/vmwh_LATEST.tar.gz -C /tmp/\n/tmp/install\n"
                             "systemctl enable vmware-USBArbitrator\nsystemctl start vmware-USBArbitrator\n"
                             "systemctl enable vmware-view-USBD\nsystemctl start vmware-view-USBD\n"
                             "# Add Horizon icon to docky menu:\n/opt/scripts/dockyadd.sh vmware-view.desktop\n";
